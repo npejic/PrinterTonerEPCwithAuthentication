@@ -1,0 +1,89 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.Owner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalji firme</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Firma
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.OwnerTelephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerTelephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerContactTelephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerContactTelephone)
+        </dd>*@
+
+        <dt>
+            PIB
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerPIB)
+        </dd>
+
+        <dt>
+            Matični broj
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerMatBroj)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.OwnerIsInPDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerIsInPDV)
+        </dd>*@
+
+        <dt>
+            Kreirano
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Izmeni", "Edit", new { id = Model.OwnerID }) |*@
+    @Html.ActionLink("Povratak", "Index")
+</p>

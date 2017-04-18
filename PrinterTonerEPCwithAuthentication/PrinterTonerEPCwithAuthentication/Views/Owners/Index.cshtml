@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Owner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista svih firmi</h2>
+
+@using (Html.BeginForm())
+{ <p> Firma: @Html.TextBox("searchByOwner") <input type="submit" value="Search" /></p> }
+
+
+<p>
+    @Html.ActionLink("Unesi novi", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Firma
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Adresa
+        </th>
+        <th>
+            Kontakt osoba
+        </th>
+        <th>
+            Telefon kontakt osobe
+        </th>
+        <th>
+            Email
+        </th>
+        @*<th>
+            PIB
+        </th>
+        <th>
+            Matični broj
+        </th>*@
+        <th>
+            U PDV-u
+        </th>
+        <th>
+            Aktivan status
+        </th>
+        <th>
+            Napomena
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerContact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerContactTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerEmail)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.OwnerPIB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerMatBroj)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerIsInPDV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerIsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.OwnerID }) |
+            @Html.ActionLink("Detaljno", "Details", new { id=item.OwnerID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.OwnerID })
+        </td>
+    </tr>
+}
+
+</table>
