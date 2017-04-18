@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak ugovora</h2>
+
+<p>
+    @Html.ActionLink("Unesi novi ugovor", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Firma@*@Html.DisplayNameFor(model => model.Owner.OwnerName)*@
+        </th>
+        <th>
+            Ugovor@*@Html.DisplayNameFor(model => model.ContractName)*@
+        </th>
+        <th>
+            Datum ugovora@*@Html.DisplayNameFor(model => model.ContractDate)*@
+        </th>
+        <th>
+            Tip ugovora@*@Html.DisplayNameFor(model => model.ContractIs)*@
+        </th>
+        <th>
+            Trajanje ugovora@*@Html.DisplayNameFor(model => model.ContactDuration)*@
+        </th>
+        <th>
+            Dokumentacija komplentna@*@Html.DisplayNameFor(model => model.ContractComplete)*@
+        </th>
+        @*<th>
+            Ugovor aktivan
+        </th>*@
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractName)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ContractDate))
+            @*@Html.DisplayFor(modelItem => item.ContractDate)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractIs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractComplete)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ContractActive)
+        </td>*@
+        
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.ContractID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.ContractID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.Contract
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner.OwnerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.OwnerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractIs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractIs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractComplete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractComplete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ContractID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

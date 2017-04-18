@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Istekli ugovori</h2>
+<h3>Današnji datum @DateTime.Now.ToShortDateString()</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.OwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractIs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactDuration)
+        </th>
+        <th>
+            Datum
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractIs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactDuration)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ContractDate))
+        </td>
+        
+     
+    </tr>
+}
+
+</table>
