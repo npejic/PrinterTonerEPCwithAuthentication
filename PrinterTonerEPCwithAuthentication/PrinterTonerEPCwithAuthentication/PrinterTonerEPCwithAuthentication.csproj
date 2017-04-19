@@ -168,6 +168,8 @@
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SaleTonersController.cs" />
     <Compile Include="Controllers\ServisController.cs" />
+    <Compile Include="Controllers\ToDoesController.cs" />
+    <Compile Include="Controllers\TonersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -328,6 +330,16 @@
     <Content Include="Views\Servis\Edit.cshtml" />
     <Content Include="Views\Servis\Index.cshtml" />
     <Content Include="Views\Servis\SelectOwner.cshtml" />
+    <Content Include="Views\ToDoes\Create.cshtml" />
+    <Content Include="Views\ToDoes\Delete.cshtml" />
+    <Content Include="Views\ToDoes\Details.cshtml" />
+    <Content Include="Views\ToDoes\Edit.cshtml" />
+    <Content Include="Views\ToDoes\Index.cshtml" />
+    <Content Include="Views\Toners\Create.cshtml" />
+    <Content Include="Views\Toners\Delete.cshtml" />
+    <Content Include="Views\Toners\Details.cshtml" />
+    <Content Include="Views\Toners\Edit.cshtml" />
+    <Content Include="Views\Toners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,9 +14,13 @@ namespace PrinterTonerEPCwithAuthentication.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            
             // Add custom user claims here
+            
+
             return userIdentity;
         }
+        public string Nick { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -46,5 +50,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         {
             throw new NotImplementedException();
         }
+
+        public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.User> Users1 { get; set; }
     }
 }

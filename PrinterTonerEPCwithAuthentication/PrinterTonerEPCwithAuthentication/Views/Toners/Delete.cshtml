@@ -1,0 +1,71 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.Toner
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div>
+    <h4>Brisanje tonera iz baze</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Model
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonerModel)
+        </dd>
+
+        <dt>
+           Original
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonerIsOriginal)
+        </dd>
+
+        <dt>
+            Pp. br. strana
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonerYield)
+        </dd>
+
+        <dt>
+            Gramaža
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonerGram)
+        </dd>
+
+
+        <dt>
+            Product No
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonerProductNo)
+        </dd>
+
+        <dt>
+            Kreirano
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak", "Index")
+        </div>
+    }
+</div>

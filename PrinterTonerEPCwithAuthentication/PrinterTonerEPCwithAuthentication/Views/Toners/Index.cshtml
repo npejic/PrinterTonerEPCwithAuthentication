@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Toner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak svih tonera</h2>
+
+<p>
+    @Html.ActionLink("Unesi novi toner", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Model
+        </th>
+        <th>
+            Orginal
+        </th>
+        <th>
+            Pp. br. strana
+        </th>
+        <th>
+            Gramaža
+        </th>
+        <th>
+            Product No
+        </th>
+        
+        @*<th>
+            Kreirano
+        </th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerIsOriginal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerYield)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerGram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerProductNo)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>*@
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.TonerID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.TonerID })
+        </td>
+    </tr>
+}
+
+</table>
