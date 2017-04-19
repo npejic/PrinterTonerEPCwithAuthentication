@@ -1,0 +1,79 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.Printer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div>
+    <h4>Brisanje štampača iz baze</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Interni broj
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterInternalNo)
+        </dd>
+
+        <dt>
+            Proizvođač
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterManufacturer)
+        </dd>
+
+        <dt>
+            Model
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterModel)
+        </dd>
+
+        <dt>
+            Serijski broj
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterSerialNo)
+        </dd>
+
+        <dt>
+            Broj hardvera
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterHardwareNo)
+        </dd>
+
+        <dt>
+            Rashodovan
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterDecommissioned)
+        </dd>
+
+      
+
+        <dt>
+            Kreiran
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak", "Index")
+        </div>
+    }
+</div>

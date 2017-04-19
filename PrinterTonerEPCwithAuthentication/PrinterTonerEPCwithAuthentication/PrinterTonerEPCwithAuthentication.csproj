@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
+    <Compile Include="Controllers\PrintersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +295,11 @@
     <Content Include="Views\Contracts\Edit.cshtml" />
     <Content Include="Views\Contracts\Index.cshtml" />
     <Content Include="Views\Contracts\InactiveOwners.cshtml" />
+    <Content Include="Views\Printers\Create.cshtml" />
+    <Content Include="Views\Printers\Delete.cshtml" />
+    <Content Include="Views\Printers\Details.cshtml" />
+    <Content Include="Views\Printers\Edit.cshtml" />
+    <Content Include="Views\Printers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

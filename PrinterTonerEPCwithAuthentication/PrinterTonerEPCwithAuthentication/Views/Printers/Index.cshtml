@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Printer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak svih štampača</h2>
+
+<p>
+    @Html.ActionLink("Unesi novi", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Firma
+        </th>
+        <th>
+            Interni broj
+        </th>
+        <th>
+            Proizvođač
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Serijski broj
+        </th>
+        <th>
+            Broj hardvera
+        </th>
+        <th>
+            Rashodovan
+        </th>
+       
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterInternalNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterManufacturer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterSerialNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterHardwareNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterDecommissioned)
+        </td>
+     
+       
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.PrinterID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.PrinterID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.Printer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Printer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterInternalNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterInternalNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterManufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterManufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterSerialNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterSerialNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterHardwareNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterHardwareNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterDecommissioned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterDecommissioned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEPCprinter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEPCprinter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PrinterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
