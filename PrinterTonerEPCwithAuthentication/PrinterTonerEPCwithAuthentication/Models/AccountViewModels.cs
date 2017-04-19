@@ -79,6 +79,9 @@ namespace PrinterTonerEPCwithAuthentication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //TODO: dodato
+        public string Nick { get; set; }
     }
 
     public class ResetPasswordViewModel

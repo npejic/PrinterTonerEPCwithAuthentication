@@ -14,7 +14,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
     public class ToDoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         public ActionResult Index()
         {
             var toDoes = db.ToDoes.Include(t => t.User).OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);

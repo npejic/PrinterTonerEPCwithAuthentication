@@ -151,7 +151,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //TODO: dodat Nick
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email , Nick = model.Nick};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

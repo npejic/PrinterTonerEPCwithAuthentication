@@ -332,7 +332,6 @@
     <Content Include="Views\Servis\SelectOwner.cshtml" />
     <Content Include="Views\ToDoes\Create.cshtml" />
     <Content Include="Views\ToDoes\Delete.cshtml" />
-    <Content Include="Views\ToDoes\Details.cshtml" />
     <Content Include="Views\ToDoes\Edit.cshtml" />
     <Content Include="Views\ToDoes\Index.cshtml" />
     <Content Include="Views\Toners\Create.cshtml" />
@@ -340,6 +339,7 @@
     <Content Include="Views\Toners\Details.cshtml" />
     <Content Include="Views\Toners\Edit.cshtml" />
     <Content Include="Views\Toners\Index.cshtml" />
+    <Content Include="Views\ToDoes\EditFromHomeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
