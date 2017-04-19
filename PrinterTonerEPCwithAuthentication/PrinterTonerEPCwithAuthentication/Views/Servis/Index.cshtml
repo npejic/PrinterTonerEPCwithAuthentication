@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Servis>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak svih servisnih radnji</h2>
+
+@using (Html.BeginForm())
+{ <p> Serijski broj: @Html.TextBox("searchBySerialNo") <input type="submit" value="Search" /></p> }
+
+@using (Html.BeginForm())
+{ <p> Firma  : @Html.TextBox("searchByOwner") <input type="submit" value="Search" /></p> }
+
+<p>
+    @Html.ActionLink("Unesi novu", "SelectOwner")
+</p>
+<table class="table">
+    <tr>
+        @*TODO:izmena*@
+        <th>
+            Vlasnik
+        </th>
+        <th>
+            Serijski broj
+        </th>
+        <th>
+            Model štampača
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServisDate)
+        </th>
+        <th>
+            Napomena
+        </th>
+        <th>
+            Cena
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printer.Owner.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printer.PrinterSerialNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printer.PrinterModel)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ServisDate))
+            @*@Html.DisplayFor(modelItem => item.ServisDate)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServisPrice)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.ServisID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.ServisID })
+        </td>
+    </tr>
+}
+
+</table>

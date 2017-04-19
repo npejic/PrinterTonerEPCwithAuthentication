@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.SaleToner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sva kretanja tonera</h2>
+
+<p>
+    @Html.ActionLink("Unesi novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Firma
+        </th>
+        <th>
+            Toner
+        </th>
+        <th>
+            Datum
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            Količina
+        </th>
+        <th>
+            Faktura
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Toner.TonerModel)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.SaleTonerDate))
+            @*@Html.DisplayFor(modelItem => item.SaleTonerDate)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TonerQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SaleTonerID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.SaleTonerID }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id=item.SaleTonerID })
+        </td>
+    </tr>
+}
+
+</table>

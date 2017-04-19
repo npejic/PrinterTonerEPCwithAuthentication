@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.SaleToner>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Toner Alarm</h2>
+
+@using (Html.BeginForm())
+{ <p> Posmatran broj meseci: @Html.TextBox("periodInMonths") <input type="submit" value="Search" /></p> }
+
+@*<p>
+        @Html.ActionLink("Unesi novo", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            Firma
+        </th>
+        @*<th>
+            Ugovor
+        </th>*@
+        <th>
+            Toner
+        </th>
+        <th>
+            Datum
+        </th>
+        <th>
+            Cena
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Contract.ContractName)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Toner.TonerModel)
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.SaleTonerDate))
+                @*@Html.DisplayFor(modelItem => item.SaleTonerDate)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerPrice)
+            </td>
+         
+        </tr>
+    }
+
+</table>
