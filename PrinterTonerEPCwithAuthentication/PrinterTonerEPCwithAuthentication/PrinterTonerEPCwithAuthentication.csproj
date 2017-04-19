@@ -164,6 +164,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\PrintersController.cs" />
+    <Compile Include="Controllers\PrinterTonerCompatibilitiesController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -300,6 +302,16 @@
     <Content Include="Views\Printers\Details.cshtml" />
     <Content Include="Views\Printers\Edit.cshtml" />
     <Content Include="Views\Printers\Index.cshtml" />
+    <Content Include="Views\PrinterTonerCompatibilities\Create.cshtml" />
+    <Content Include="Views\PrinterTonerCompatibilities\Delete.cshtml" />
+    <Content Include="Views\PrinterTonerCompatibilities\Details.cshtml" />
+    <Content Include="Views\PrinterTonerCompatibilities\Edit.cshtml" />
+    <Content Include="Views\PrinterTonerCompatibilities\Index.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
