@@ -19,8 +19,11 @@ namespace PrinterTonerEPCwithAuthentication.Models
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Closed { get; set; }
         
-        public int UserID { get; set; }
-        public virtual User User { get; set; }
+        //public int UserID { get; set; }
+        //public virtual User User { get; set; }
+
+        public string ApplicationUserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public bool IsReady { get; set; }
         public string Remark { get; set; }

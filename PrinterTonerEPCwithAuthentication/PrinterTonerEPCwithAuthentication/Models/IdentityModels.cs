@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 
 namespace PrinterTonerEPCwithAuthentication.Models
 {
@@ -21,6 +22,8 @@ namespace PrinterTonerEPCwithAuthentication.Models
             return userIdentity;
         }
         public string Nick { get; set; }
+        public virtual ICollection<ToDo> ToDoes { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -51,6 +54,6 @@ namespace PrinterTonerEPCwithAuthentication.Models
             throw new NotImplementedException();
         }
 
-        public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.User> Users1 { get; set; }
+        //public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.User> Users1 { get; set; }
     }
 }

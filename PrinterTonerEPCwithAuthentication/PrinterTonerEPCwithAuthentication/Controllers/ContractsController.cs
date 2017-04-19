@@ -71,7 +71,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
+            //ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
             return View(contract);
         }
 

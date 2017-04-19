@@ -17,20 +17,21 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         
         public ActionResult Index()
         {
-            var toDoes = db.ToDoes.Include(t => t.User).OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);
+            var toDoes = db.ToDoes.Include(t => t.ApplicationUser).OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);
             return View(toDoes.ToList());
         }
 
         public ActionResult Create()
         {
+
             var sortedUsers = db.Users.OrderBy(c => c.Nick);
-            ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick");
+            ViewBag.ApplicationUserID = new SelectList(sortedUsers, "Id", "Nick");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ToDoID,Description,Closed,UserID,IsReady")] ToDo toDo)
+        public ActionResult Create([Bind(Include = "ToDoID,Description,Closed,ApplicationUserID,IsReady")] ToDo toDo)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +40,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "Id", "Nick", toDo.ApplicationUser);
             return View(toDo);
         }
 
@@ -56,13 +57,14 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
 
             var sortedUsers = db.Users.OrderBy(c => c.Nick);
-            ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.UserID);
+            ViewBag.ApplicationUserID = new SelectList(sortedUsers, "Id", "Nick");
+            //ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ToDoID,Description,Closed,UserID,IsReady")] ToDo toDo)
+        public ActionResult Edit([Bind(Include = "ToDoID,Description,Closed,ApplicationUserID,IsReady")] ToDo toDo)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +72,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
         }
 
@@ -87,7 +89,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
 
             var sortedUsers = db.Users.OrderBy(c => c.Nick);
-            ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.UserID);
+            ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
         }
 
@@ -101,7 +103,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
         }
 
