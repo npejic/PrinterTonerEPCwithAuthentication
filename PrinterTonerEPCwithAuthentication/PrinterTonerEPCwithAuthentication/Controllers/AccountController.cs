@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using PrinterTonerEPCwithAuthentication.Models;
 
@@ -403,6 +404,58 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             return View();
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        //TODO: ubačeno
+
+        // GET: /Roles/Create
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Roles/Create
+        [HttpPost]
+        public ActionResult CreateRole(FormCollection collection)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            try
+            {
+                db.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+                {
+                    Name = collection["RoleName"]
+                });
+                db.SaveChanges();
+                ViewBag.ResultMessage = "Role created successfully !";
+                return RedirectToAction("IndexRole");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult IndexRole()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var roles = db.Roles.ToList();
+            return View(roles);
+        }
+
+        public ActionResult Delete(string RoleName)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var thisRole = db.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            db.Roles.Remove(thisRole);
+            db.SaveChanges();
+            return RedirectToAction("IndexRole");
+        }
+        /////////////////////////////////////////////////////////////////////////////
+        
+
 
         protected override void Dispose(bool disposing)
         {
