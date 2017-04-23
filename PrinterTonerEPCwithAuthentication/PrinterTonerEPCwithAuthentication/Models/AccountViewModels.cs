@@ -81,7 +81,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public string ConfirmPassword { get; set; }
 
         //TODO: dodato
+        //public string Name { get; set; }
         public string Nick { get; set; }
+        //public string Telephone { get; set; }
+        //public string Remark { get; set; }
     }
 
     public class ResetPasswordViewModel

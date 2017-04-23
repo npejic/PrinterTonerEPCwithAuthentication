@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Napravi novi nivo pristupa</h2>
+
+@Html.ActionLink("Svi nivoi", "Index") | @Html.ActionLink("Ažuriraj nivoe pristupa korisnika", "ManageUserRoles")
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div class="form-group">
+        <label for="usr">Naziv nivoa pristupa:</label>
+        <input type="text" class="form-control" name="RoleName" id="usr">
+    </div>
+
+    @*<div>
+        Naziv nivoa pristupa
+    </div>
+    <p>
+        @Html.TextBox("RoleName")
+    </p>*@
+    <input type="submit" value="Unesi" />
+}

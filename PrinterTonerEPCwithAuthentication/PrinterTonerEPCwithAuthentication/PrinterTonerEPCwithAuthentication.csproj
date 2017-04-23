@@ -166,6 +166,7 @@
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\PrintersController.cs" />
     <Compile Include="Controllers\PrinterTonerCompatibilitiesController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SaleTonersController.cs" />
     <Compile Include="Controllers\ServisController.cs" />
@@ -345,9 +346,14 @@
     <Content Include="Views\Account\IndexRole.cshtml" />
     <Content Include="Views\Account\EditRole.cshtml" />
     <Content Include="Views\Account\ManageUserRoles.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
+    <Content Include="Views\Roles\RoleAddToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
