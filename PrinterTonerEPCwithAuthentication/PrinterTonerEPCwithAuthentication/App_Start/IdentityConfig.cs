@@ -110,7 +110,9 @@ namespace PrinterTonerEPCwithAuthentication
         }
     }
 
-    //TODO: dodato
+    /// <summary>
+    /// TODO: dodato
+    /// </summary>
     public class ApplicationRoleManager : RoleManager<IdentityRole>
     {
         public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
