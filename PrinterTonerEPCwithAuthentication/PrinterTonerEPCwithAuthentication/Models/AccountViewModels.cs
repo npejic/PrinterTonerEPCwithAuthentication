@@ -48,10 +48,15 @@ namespace PrinterTonerEPCwithAuthentication.Models
 
     public class LoginViewModel
     {
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        //[EmailAddress]
+        public string UserName { get; set; }
+
 
         [Required]
         [DataType(DataType.Password)]
@@ -84,6 +89,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public string ConfirmPassword { get; set; }
 
         //TODO: dodato
+        public string UserName { get; set; }
         public string FullName { get; set; }
         public string Nick { get; set; }
         public string CellPhone { get; set; }
