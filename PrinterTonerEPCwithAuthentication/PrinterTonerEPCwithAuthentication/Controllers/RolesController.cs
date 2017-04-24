@@ -32,7 +32,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 });
                 db.SaveChanges();
                 ViewBag.ResultMessage = "Role created successfully !";
-                return RedirectToAction("IndexRole");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -54,11 +54,11 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             var thisRole = db.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             db.Roles.Remove(thisRole);
             db.SaveChanges();
-            return RedirectToAction("IndexRole");
+            return RedirectToAction("Index");
         }
 
         // GET: /Roles/Edit/5
-        public ActionResult EditRole(string roleName)
+        public ActionResult Edit(string roleName)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             var thisRole = db.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -70,7 +70,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // POST: /Roles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditRole(Microsoft.AspNet.Identity.EntityFramework.IdentityRole role)
+        public ActionResult Edit(Microsoft.AspNet.Identity.EntityFramework.IdentityRole role)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 db.Entry(role).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("IndexRole");
+                return RedirectToAction("Index");
             }
             catch
             {

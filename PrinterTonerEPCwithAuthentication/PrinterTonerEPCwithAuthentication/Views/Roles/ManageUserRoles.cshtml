@@ -8,7 +8,7 @@
 
 <h2>Dodavanje nivoa korisniku</h2>
 
-@using (Html.BeginForm("RoleAddToUser", "Account"))
+@using (Html.BeginForm("RoleAddToUser", "Roles"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -23,7 +23,7 @@
 }
 <hr />
 <h3>Prikaz svih nivoa korisnika</h3>
-@using (Html.BeginForm("GetRoles", "Account"))
+@using (Html.BeginForm("GetRoles", "Roles"))
 {
     @Html.AntiForgeryToken()
     <p>
@@ -48,7 +48,7 @@
 <hr />
 <h3>Izbrisati nivo kod korisnika</h3>
 
-@using (Html.BeginForm("DeleteRoleForUser", "Account"))
+@using (Html.BeginForm("DeleteRoleForUser", "Roles"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
