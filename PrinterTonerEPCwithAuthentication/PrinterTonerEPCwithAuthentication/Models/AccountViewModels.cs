@@ -86,7 +86,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         //TODO: dodato
         public string FullName { get; set; }
         public string Nick { get; set; }
-        public string Telephone { get; set; }
+        public string CellPhone { get; set; }
         public string Remark { get; set; }
     }
 
