@@ -62,6 +62,9 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// Added Nick, FullName
+    /// </summary>
     public class RegisterViewModel
     {
         [Required]
@@ -70,7 +73,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -81,10 +84,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public string ConfirmPassword { get; set; }
 
         //TODO: dodato
-        //public string Name { get; set; }
+        public string FullName { get; set; }
         public string Nick { get; set; }
-        //public string Telephone { get; set; }
-        //public string Remark { get; set; }
+        public string Telephone { get; set; }
+        public string Remark { get; set; }
     }
 
     public class ResetPasswordViewModel

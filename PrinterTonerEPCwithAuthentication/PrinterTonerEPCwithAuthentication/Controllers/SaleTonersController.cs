@@ -29,16 +29,18 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.5
         public ActionResult TonerAlarm(string periodInMonths)
         {
+            var ownersWithNoAlarmOrder = db.SaleToners
+                  .Where(c => c.Owner.OwnerIsActive == true)
+                  .GroupBy(c => c.OwnerID)
+                  .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(c => c.SaleTonerDate);
 
-            var ownersWithNoAlarmOrder = db.SaleToners.GroupBy(g => new { g.Owner.OwnerName, g.TonerID }).Select(s => s.OrderByDescending(x => x.SaleTonerDate)
-                                        .FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
 
             if (!String.IsNullOrEmpty(periodInMonths))
             {
                 int period = Int16.Parse(periodInMonths);
                 var LimitDate = DateTime.Now.Date;
                 LimitDate = LimitDate.AddMonths(-period);
-                ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate && o.Owner.OwnerIsActive == true).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
+                ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate).OrderBy(s => s.SaleTonerDate);
             }
             return View(ownersWithNoAlarmOrder.ToList());
         }

@@ -50,14 +50,17 @@ namespace PrinterTonerEPCwithAuthentication
                 RequireUniqueEmail = true
             };
 
-            // Configure validation logic for passwords
+            /// <summary>
+            /// Configure validation logic for passwords
+            /// Changed 6, true, true, true, true
+            /// </summary>
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequiredLength = 4,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

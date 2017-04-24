@@ -8,7 +8,10 @@ using System.Collections.Generic;
 
 namespace PrinterTonerEPCwithAuthentication.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    /// <summary>
+    /// You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more. 
+    /// Added FullName, Nick, Telephone and Remark strings
+    /// </summary>
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -21,7 +24,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
 
             return userIdentity;
         }
+        public string FullName { get; set; }
         public string Nick { get; set; }
+        public string Telephone { get; set; }
+        public string Remark { get; set; }
         public virtual ICollection<ToDo> ToDoes { get; set; }
 
     }
