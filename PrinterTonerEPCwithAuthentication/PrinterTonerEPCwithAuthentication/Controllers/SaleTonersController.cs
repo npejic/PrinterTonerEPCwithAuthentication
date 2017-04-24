@@ -9,7 +9,6 @@ using System.Web.Mvc;
 using PrinterTonerEPCwithAuthentication.Models;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
-
 {
     public class SaleTonersController : Controller
     {
@@ -20,7 +19,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             //var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner)
             //                    .OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
 
-            var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c=>c.Owner.OwnerName);
+            var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
 
             return View(saleToners.ToList());
         }
@@ -45,15 +44,28 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             return View(ownersWithNoAlarmOrder.ToList());
         }
 
+        //Report No.5a
+        public ActionResult TonerAlarm2()
+        {
+            var ownersWithNoAlarmOrder = db.Owners
+                                           .Where(c => !db.SaleToners
+                                           .Select(b => b.OwnerID)
+                                           .Contains(c.OwnerID)
+    );
+
+            return View(ownersWithNoAlarmOrder.ToList());
+        }
+
+
         //Report No.6
         public ActionResult TotalTonerSale(string dateFromString, string dateToString)
         {
             var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
             {
                 TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c=> c.TonerQuantity),
+                TonerTotalCount = r.Sum(c => c.TonerQuantity),
             }).OrderByDescending(c => c.TonerTotalCount).ToList();
-            
+
             //TODO: missing part of the code which will do TryParse DateTime input
             if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
             {
@@ -71,9 +83,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
                 soldToners = soldTonersInPeriod;
             }
-            
+
             //Izračunava ukupan broj EPC štampača na iznajmljivanju
-            var CountSoldToners = soldToners.Sum(c=>c.TonerTotalCount);
+            var CountSoldToners = soldToners.Sum(c => c.TonerTotalCount);
             ViewData["CountSoldToners"] = CountSoldToners;
 
             return View(soldToners.ToList());

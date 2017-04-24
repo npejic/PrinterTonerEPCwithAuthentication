@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Owner>
+
+@{
+    ViewBag.Title = "TonerAlarm2";
+}
+
+<h2>TonerAlarm2</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerContact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerContactTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerEmail)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerContact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerContactTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerEmail)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        
+       
+    </tr>
+}
+
+</table>
