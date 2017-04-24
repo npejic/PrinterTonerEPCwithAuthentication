@@ -1,6 +1,7 @@
 ﻿Bootstrap
 WPF MVVM
 Java script
+enable migrations
 Unit testing (code coverage)
 Exception handling
 izbaciti: table ?-> css ???
