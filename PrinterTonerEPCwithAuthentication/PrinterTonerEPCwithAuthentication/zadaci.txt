@@ -1,0 +1,4 @@
+﻿
+
+Izveštaj 6.
+Dodati Ownere koji su aktivni a nisu naručivali tonere u datu tabelu ili kao zasebnu tabelu
