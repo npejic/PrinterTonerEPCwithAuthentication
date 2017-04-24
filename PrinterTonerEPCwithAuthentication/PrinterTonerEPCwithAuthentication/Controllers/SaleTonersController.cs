@@ -82,7 +82,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.4
         public ActionResult LastTonerSale(string searchByOwner, string searchByToner)
         {
-            var lastTonerSale = db.SaleToners.GroupBy(g => new { g.Owner.OwnerName, g.TonerID }).Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
+            var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID }).Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
 
             if (!String.IsNullOrEmpty(searchByOwner))
             {
