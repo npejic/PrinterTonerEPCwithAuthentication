@@ -72,8 +72,8 @@ namespace PrinterTonerEPCwithAuthentication.Models
     /// </summary>
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
+        //[Required]
+        //[EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
