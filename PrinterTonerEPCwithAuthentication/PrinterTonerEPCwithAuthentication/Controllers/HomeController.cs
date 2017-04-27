@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity; //needed because of Include
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
@@ -11,17 +12,23 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
     {
         public ActionResult Index()
         {
-            //Izračunava ukupan broj EPC štampača na iznajmljivanju
-            ApplicationDbContext db = new ApplicationDbContext();
-            var sales = from s in db.Sales
-                        where s.Printer.Owner.OwnerName == "EPC DOO"
-                        select s;
-            var CountRentedPrinters = sales.Count();
-            ViewData["CountRentedPrinters"] = CountRentedPrinters;
+            List<ToDo> openedTasks = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
 
-            //list of opened todoes (without closing date), shown on top of the HomeIndexView
-            //var openedTasks = db.ToDoes.Include(t => t.ApplicationUser).Where(c => c.Closed == null).OrderBy(c => c.Created).ToList();
-            var openedTasks = db.ToDoes.Where(c => c.Closed == null).OrderBy(c => c.Created).ToList();
+                var sales = from s in db.Sales
+                            where s.Printer.Owner.OwnerName == "EPC DOO"
+                            select s;
+                //Ukupan broj EPC štampača na iznajmljivanju
+                var CountRentedPrinters = sales.Count();
+                ViewData["CountRentedPrinters"] = CountRentedPrinters;
+
+                //list of opened todoes (without closing date), shown on top of the HomeIndexView
+                //Include is for EAGER loading of ApplicationUser
+                openedTasks = db.ToDoes.Include(c=>c.ApplicationUser).Where(c => c.Closed == null).OrderBy(c => c.Created).ToList();
+            }
+                               
+            
             return View(openedTasks);
         }
 
