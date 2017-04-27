@@ -8,3 +8,17 @@ izbaciti: table ?-> css ???
 
 Izveštaj 6.
 Dodati Ownere koji su aktivni a nisu naručivali tonere u datu tabelu ili kao zasebnu tabelu
+
+Gaja: pogledati i implementirati DataContextFactory
+rutina koja vraća IDataContext zove se CreateInstance
+dobijaš: -nema instanciranja klase DataContext, samim tim možeš da mokuješ
+         -svaki put kreiraš novu instancu kad ti treba baza, to je bitno jerEF čuva i sa select dodaje podatke
+
+
+Šimić: 
+- users - ubaciti kolone stari GO, novi GO
+- servis IndexView - sort najmlađi top
+- ugovor - sort najmlađi datum top
+         - novi ugovor - firme sort
+kretanje štampača - sort po datumu + proizvođač
+                  - sort upis štampača
