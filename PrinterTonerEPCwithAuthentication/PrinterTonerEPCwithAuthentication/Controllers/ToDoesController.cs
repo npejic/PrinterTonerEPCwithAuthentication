@@ -89,13 +89,14 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
 
             var sortedUsers = db.Users.OrderBy(c => c.Nick);
-            ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.ApplicationUser.Id);
+            ViewBag.ApplicationUserID = new SelectList(sortedUsers, "Id", "Nick");
+            //ViewBag.UserID = new SelectList(sortedUsers, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFromHomeView([Bind(Include = "ToDoID,Description,Closed,UserID,IsReady")] ToDo toDo)
+        public ActionResult EditFromHomeView([Bind(Include = "ToDoID,Description,Closed,ApplicationUserID,IsReady")] ToDo toDo)
         {
             if (ModelState.IsValid)
             {
