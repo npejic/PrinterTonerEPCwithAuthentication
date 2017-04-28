@@ -3,11 +3,10 @@ WPF MVVM
 Java script
 enable migrations
 Unit testing (code coverage)
-Exception handling
+Exception handling + log errors
 izbaciti: table ?-> css ???
 
-Izveštaj 6.
-Dodati Ownere koji su aktivni a nisu naručivali tonere u datu tabelu ili kao zasebnu tabelu
+- reset lozinke od strane Admina
 
 Gaja: pogledati i implementirati DataContextFactory
 rutina koja vraća IDataContext zove se CreateInstance
@@ -22,3 +21,4 @@ dobijaš: -nema instanciranja klase DataContext, samim tim možeš da mokuješ
          - novi ugovor - firme sort
 kretanje štampača - sort po datumu + proizvođač
                   - sort upis štampača
+- tri nivoa pristupa

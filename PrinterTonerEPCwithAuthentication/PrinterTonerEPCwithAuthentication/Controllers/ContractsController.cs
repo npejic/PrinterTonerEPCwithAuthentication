@@ -67,11 +67,11 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult Create()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            
 
-                var aaa = db.Owners;
-                ViewBag.OwnerID = new SelectList(aaa, "OwnerID", "OwnerName");
-                return View();
+
+            var aaa = db.Owners;
+            ViewBag.OwnerID = new SelectList(aaa, "OwnerID", "OwnerName");
+            return View();
             
         }
 
