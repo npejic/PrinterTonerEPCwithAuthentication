@@ -6,8 +6,7 @@ Unit testing (code coverage)
 Exception handling
 izbaciti: table ?-> css ???
 
-Izveštaj 6.
-Dodati Ownere koji su aktivni a nisu naručivali tonere u datu tabelu ili kao zasebnu tabelu
+
 
 Gaja: pogledati i implementirati DataContextFactory
 rutina koja vraća IDataContext zove se CreateInstance
