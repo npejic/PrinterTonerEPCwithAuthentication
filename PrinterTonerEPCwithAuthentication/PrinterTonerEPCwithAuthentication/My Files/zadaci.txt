@@ -16,9 +16,9 @@ dobijaš: -nema instanciranja klase DataContext, samim tim možeš da mokuješ
 
 Šimić: 
 - users - ubaciti kolone stari GO, novi GO
-- servis IndexView - sort najmlađi top
-- ugovor - sort najmlađi datum top
-         - novi ugovor - firme sort
-kretanje štampača - sort po datumu + proizvođač
+- servis IndexView - sort najmlađi top			---OK
+- ugovor - sort najmlađi datum top				---OK
+         - novi ugovor - firme sort				---OK
+kretanje štampača - sort po datumu + proizvođač	---OK
                   - sort upis štampača
 - tri nivoa pristupa
