@@ -17,16 +17,16 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Index(string searchBySerialNo, string searchByOwner)
         {
-            var servis = db.Servis.Include(s => s.Printer).OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
+            var servis = db.Servis.Include(s => s.Printer).OrderByDescending(o => o.ServisDate);//.OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
 
             if (!String.IsNullOrEmpty(searchBySerialNo))
             {
-                servis = servis.Where(o => o.Printer.PrinterSerialNo.Contains(searchBySerialNo)).OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
+                servis = servis.Where(o => o.Printer.PrinterSerialNo.Contains(searchBySerialNo)).OrderByDescending(o => o.ServisDate);//.OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
             }
 
             if (!String.IsNullOrEmpty(searchByOwner))
             {
-                servis = servis.Where(o => o.Printer.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
+                servis = servis.Where(o => o.Printer.Owner.OwnerName.Contains(searchByOwner)).OrderByDescending(o => o.ServisDate);//.OrderBy(s => s.Printer.Owner.OwnerName).ThenBy(o => o.ServisDate);
             }
 
             return View(servis.ToList());
