@@ -22,7 +22,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var contracts = db.Contracts.Include(c => c.Owner).OrderBy(c => c.Owner.OwnerName).ThenBy(c => c.ContractDate);
+                var contracts = db.Contracts.Include(c => c.Owner).OrderByDescending(c => c.ContractDate);//.OrderBy(c => c.Owner.OwnerName).ThenBy(c => c.ContractDate);
                 return View(contracts.ToList());
             }
         }
@@ -69,7 +69,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
 
-            var aaa = db.Owners;
+            var aaa = db.Owners.OrderBy(n=>n.OwnerName);
             ViewBag.OwnerID = new SelectList(aaa, "OwnerID", "OwnerName");
             return View();
             
