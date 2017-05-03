@@ -4,15 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Brisanje kretanja tonera</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Sale</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contract.ContractName)
+            @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
+            Ugovor
         </dt>
 
         <dd>
@@ -20,7 +19,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)
+            @*@Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)*@
+            Interni broj
         </dt>
 
         <dd>
@@ -28,7 +28,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SaleDate)
+            @*@Html.DisplayNameFor(model => model.SaleDate)*@
+            Datum
         </dt>
 
         <dd>
@@ -36,7 +37,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Cena
         </dt>
 
         <dd>
@@ -44,7 +46,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AlternateContract)
+            @*@Html.DisplayNameFor(model => model.AlternateContract)*@
+            Novi Ugovor
         </dt>
 
         <dd>
@@ -52,7 +55,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Remark)
+            @*@Html.DisplayNameFor(model => model.Remark)*@
+            Napomena
         </dt>
 
         <dd>
@@ -60,7 +64,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @*@Html.DisplayNameFor(model => model.Created)*@
+            Kreiran
         </dt>
 
         <dd>
@@ -73,8 +78,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak", "Index")
         </div>
     }
 </div>

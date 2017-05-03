@@ -4,33 +4,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Kretanje štampača</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Unesi novo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Contract.ContractName)
+            Ugovor
+            @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)
+            @*@Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)*@
+            Interni broj
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SaleDate)
+            @*@Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)*@
+            Proizvođač
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @*@Html.DisplayNameFor(model => model.SaleDate)*@
+            Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AlternateContract)
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Cena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remark)
+            @*@Html.DisplayNameFor(model => model.AlternateContract)*@
+            Novi ugovor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @*@Html.DisplayNameFor(model => model.Remark)*@
+            Napomena
+        </th>
+        <th>
+            Kreirano@*@Html.DisplayNameFor(model => model.Created)*@
         </th>
         <th></th>
     </tr>
@@ -42,6 +52,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Printer.PrinterInternalNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printer.PrinterManufacturer)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SaleDate)
@@ -56,12 +69,13 @@
             @Html.DisplayFor(modelItem => item.Remark)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Created)
+            @*@Html.DisplayFor(modelItem => item.Created)*@
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy HH:mm}", item.Created))
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SaleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SaleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SaleID })
+            @Html.ActionLink("Izmena", "Edit", new { id=item.SaleID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.SaleID }) |
+            @Html.ActionLink("Briši", "Delete", new { id=item.SaleID })
         </td>
     </tr>
 }

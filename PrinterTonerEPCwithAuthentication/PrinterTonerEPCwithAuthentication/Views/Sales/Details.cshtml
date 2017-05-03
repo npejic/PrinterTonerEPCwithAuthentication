@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalji kretanja tonera</h2>
 
 <div>
-    <h4>Sale</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contract.ContractName)
+            @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
+            Ugovor
         </dt>
 
         <dd>
@@ -19,7 +19,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)
+            @*@Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)*@
+            Interni broj
         </dt>
 
         <dd>
@@ -27,7 +28,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SaleDate)
+            @*@Html.DisplayNameFor(model => model.SaleDate)*@
+            Datum
         </dt>
 
         <dd>
@@ -35,7 +37,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Cena
         </dt>
 
         <dd>
@@ -43,7 +46,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AlternateContract)
+            @*@Html.DisplayNameFor(model => model.AlternateContract)*@
+            Novi ugovor
         </dt>
 
         <dd>
@@ -51,7 +55,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Remark)
+            @*@Html.DisplayNameFor(model => model.Remark)*@
+            Napomena
         </dt>
 
         <dd>
@@ -59,7 +64,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @*@Html.DisplayNameFor(model => model.Created)*@
+            Kreiran
         </dt>
 
         <dd>
@@ -69,6 +75,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SaleID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Izmena", "Edit", new { id = Model.SaleID }) |
+    @Html.ActionLink("Povratak", "Index")
 </p>
