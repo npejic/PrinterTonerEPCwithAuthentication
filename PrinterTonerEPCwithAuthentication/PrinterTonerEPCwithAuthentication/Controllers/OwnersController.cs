@@ -49,7 +49,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OwnerID,OwnerName,OwnerTelephone,OwnerAddress,OwnerContact,OwnerContactTelephone,OwnerPIB,OwnerMatBroj,OwnerIsInPDV, OwnerEmail,OwnerIsActive,Created, Napomena")] Owner owner)
+        public ActionResult Create([Bind(Include = "OwnerID,OwnerName,OwnerTelephone,OwnerAddress,OwnerContact,OwnerContactTelephone,OwnerPIB,OwnerMatBroj,OwnerIsInPDV, OwnerEmail,OwnerIsActive,Created, Remark")] Owner owner)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OwnerID,OwnerName,OwnerTelephone,OwnerAddress,OwnerContact,OwnerContactTelephone,OwnerPIB,OwnerMatBroj,OwnerIsInPDV, OwnerEmail,OwnerIsActive,Created, Napomena")] Owner owner)
+        public ActionResult Edit([Bind(Include = "OwnerID,OwnerName,OwnerTelephone,OwnerAddress,OwnerContact,OwnerContactTelephone,OwnerPIB,OwnerMatBroj,OwnerIsInPDV, OwnerEmail,OwnerIsActive,Created, Remark")] Owner owner)
         {
             if (ModelState.IsValid)
             {
