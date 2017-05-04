@@ -352,6 +352,8 @@
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\SaleToners\TonerAlarm2.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Sales\SalesReportByOwner.cshtml" />
+    <Content Include="Views\Sales\EditSalesReportByOwner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
