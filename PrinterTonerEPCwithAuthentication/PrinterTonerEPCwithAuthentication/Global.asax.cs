@@ -17,5 +17,14 @@ namespace PrinterTonerEPCwithAuthentication
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error()
+        {
+            var ex = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("/ErrorPage/ErrorMessage");
+            //log the error!
+            //_Logger.Error(ex);
+        }
     }
 }
