@@ -68,15 +68,15 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ContractActive, "Ugovor aktivan", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContractValid, "Ugovor aktivan", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ContractActive)
-                    @Html.ValidationMessageFor(model => model.ContractActive, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ContractValid)
+                    @Html.ValidationMessageFor(model => model.ContractValid, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>*@
+        </div>
 
 
         <div class="form-group">

@@ -29,9 +29,9 @@
         <th>
             Dokumentacija komplentna@*@Html.DisplayNameFor(model => model.ContractComplete)*@
         </th>
-        @*<th>
+        <th>
             Ugovor aktivan
-        </th>*@
+        </th>
        
         <th></th>
     </tr>
@@ -57,9 +57,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.ContractComplete)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ContractActive)
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractValid)
+        </td>
         
         <td>
             @Html.ActionLink("Izmeni", "Edit", new { id=item.ContractID }) |

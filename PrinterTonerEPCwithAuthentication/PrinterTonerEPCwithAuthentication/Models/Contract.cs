@@ -32,6 +32,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public int ContactDuration { get; set; }
          
         public bool ContractComplete { get; set; }
+        public bool ContractValid { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
 

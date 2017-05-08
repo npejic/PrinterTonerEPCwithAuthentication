@@ -77,7 +77,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContractID,ContractName,OwnerID,ContractIs,ContactDuration,ContractComplete,ContractDate,ContractActive,Created")] Contract contract)
+        public ActionResult Create([Bind(Include = "ContractID,ContractName,OwnerID,ContractIs,ContactDuration,ContractComplete,ContractDate,ContractActive,ContractValid,Created")] Contract contract)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -112,7 +112,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractID,ContractName,OwnerID,ContractIs,ContactDuration,ContractComplete,ContractDate,ContractActive,Created")] Contract contract)
+        public ActionResult Edit([Bind(Include = "ContractID,ContractName,OwnerID,ContractIs,ContactDuration,ContractComplete,ContractDate,ContractActive,ContractValid,Created")] Contract contract)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
