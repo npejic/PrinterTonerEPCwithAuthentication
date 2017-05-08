@@ -15,8 +15,8 @@
     @Html.ActionLink("Unesi novi", "Create")
 </p>
 
-@*@using (Html.BeginForm())
-{ <p> Unesi nadimak radnika: @Html.TextBox("searchStringNick") <input type="submit" value="Search" /></p> }*@
+@using (Html.BeginForm())
+{ <p> Unesi nadimak radnika: @Html.TextBox("searchStringNick") <input type="submit" value="Search" /></p> }
 
 <style>
     .col1 { width: 110px; }
@@ -25,12 +25,12 @@
 </style>
 
 
-@using (Html.BeginForm("Index", "ToDo", FormMethod.Get))
+@*@using (Html.BeginForm("Index", "ToDo", FormMethod.Get))
 {
     <p>
         Find by name: @Html.TextBox("searchStringNick", ViewBag.CurrentFilter as string) <input type="submit" value="Search" />
     </p>
-}
+}*@
 
 
 <table class="table">

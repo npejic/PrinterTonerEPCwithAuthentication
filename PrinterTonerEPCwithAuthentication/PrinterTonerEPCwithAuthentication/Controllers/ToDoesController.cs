@@ -40,7 +40,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                     toDoes = toDoes.OrderByDescending(s => s.ApplicationUser.Nick);
                     break;
                 case "Date":
-                    toDoes = toDoes.OrderBy(s => s.Created);
+                    toDoes = toDoes.OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);//.OrderBy(s => s.Created);
                     break;
                 case "date_desc":
                     toDoes = toDoes.OrderByDescending(s => s.Created);
@@ -49,7 +49,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                     toDoes = toDoes.OrderBy(s => s.ApplicationUser.Nick);
                     break;
             }
-            int pageSize = 3; 
+            int pageSize = 20; 
             int pageNumber = (page ?? 1);
 
             return View(toDoes.ToPagedList(pageNumber, pageSize));
