@@ -66,7 +66,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created")] Sale sale)
+        public ActionResult Create([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created,Remark")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSalesReportByOwner([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created")] Sale sale)
+        public ActionResult EditSalesReportByOwner([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created,Remark")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +132,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created")] Sale sale)
+        public ActionResult Edit([Bind(Include = "SaleID,SaleDate,Price,LocationOfPrinterIs,ContractID,AlternateContract,PrinterID,TonerID,Created,Remark")] Sale sale)
         {
             if (ModelState.IsValid)
             {
