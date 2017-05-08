@@ -15,7 +15,10 @@ dobijaš: -nema instanciranja klase DataContext, samim tim možeš da mokuješ
 
 
 Šimić: 
+- ugovori - dodati bool važeći ili ne 
+		  - promena ugovora u SaleTabeli, stari ugovor ide u Alternate, a novi se upisuje
 - users - ubaciti kolone stari GO, novi GO
+
 - servis IndexView - sort najmlađi top			---OK
 - ugovor - sort najmlađi datum top				---OK
          - novi ugovor - firme sort				---OK
