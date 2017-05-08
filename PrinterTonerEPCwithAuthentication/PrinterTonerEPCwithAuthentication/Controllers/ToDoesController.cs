@@ -7,19 +7,66 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PrinterTonerEPCwithAuthentication.Models;
+using PagedList;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
-
 {
     public class ToDoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
-        public ActionResult Index()
+
+        public ActionResult Index(string sortOrder, string searchStringNick, string currentFilter, int? page)
         {
+            ViewBag.NickSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CreatedSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchStringNick != null)
+            {
+                page = 1;
+            }
+            else { searchStringNick = currentFilter; }
+            ViewBag.CurrentFilter = searchStringNick;
+
             var toDoes = db.ToDoes.Include(t => t.ApplicationUser).OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);
-            return View(toDoes.ToList());
+
+            if (!String.IsNullOrEmpty(searchStringNick))
+            {
+                toDoes = toDoes.Where(s => s.ApplicationUser.Nick.ToUpper().Contains(searchStringNick.ToUpper())).OrderBy(n => n.ApplicationUser.Nick);
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    toDoes = toDoes.OrderByDescending(s => s.ApplicationUser.Nick);
+                    break;
+                case "Date":
+                    toDoes = toDoes.OrderBy(s => s.Created);
+                    break;
+                case "date_desc":
+                    toDoes = toDoes.OrderByDescending(s => s.Created);
+                    break;
+                default:
+                    toDoes = toDoes.OrderBy(s => s.ApplicationUser.Nick);
+                    break;
+            }
+            int pageSize = 3; 
+            int pageNumber = (page ?? 1);
+
+            return View(toDoes.ToPagedList(pageNumber, pageSize));
+
+            //return View(toDoes.ToList());
+
         }
+
+        ///////////////////////
+        //stari View
+        ///////////////////////
+        //public ActionResult Index()
+        //{
+        //    var toDoes = db.ToDoes.Include(t => t.ApplicationUser).OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);
+        //    return View(toDoes.ToList());
+
+        //}
 
         public ActionResult Create()
         {
@@ -102,7 +149,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 db.Entry(toDo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Nick", toDo.ApplicationUser.Id);
             return View(toDo);
