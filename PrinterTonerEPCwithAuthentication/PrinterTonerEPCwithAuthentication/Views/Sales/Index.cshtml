@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            Ugovor
+            Ugovor broj
             @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
         </th>
         <th>
@@ -24,16 +24,19 @@
             Proizvođač
         </th>
         <th>
+            Model
+        </th>
+        <th>
             @*@Html.DisplayNameFor(model => model.SaleDate)*@
             Datum
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.Price)*@
-            Cena
+            Vrednost €
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.AlternateContract)*@
-            Novi ugovor
+            Prethodni ugovor
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.Remark)*@
@@ -57,7 +60,11 @@
             @Html.DisplayFor(modelItem => item.Printer.PrinterManufacturer)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SaleDate)
+            @Html.DisplayFor(modelItem => item.Printer.PrinterModel)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Created))
+            @*@Html.DisplayFor(modelItem => item.SaleDate)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -70,11 +77,11 @@
         </td>
         <td>
             @*@Html.DisplayFor(modelItem => item.Created)*@
-            @Convert.ToString(string.Format("{0:dd/MM/yyyy HH:mm}", item.Created))
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Created))
         </td>
         <td>
             @Html.ActionLink("Izmena", "Edit", new { id=item.SaleID }) |
-            @Html.ActionLink("Detalji", "Details", new { id=item.SaleID }) |
+            @*@Html.ActionLink("Detalji", "Details", new { id=item.SaleID }) |*@
             @Html.ActionLink("Briši", "Delete", new { id=item.SaleID })
         </td>
     </tr>

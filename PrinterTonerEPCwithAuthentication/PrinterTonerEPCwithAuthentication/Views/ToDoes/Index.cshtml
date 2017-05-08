@@ -1,4 +1,9 @@
-﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.ToDo>
+﻿@model PagedList.IPagedList<PrinterTonerEPCwithAuthentication.Models.ToDo> 
+@using PagedList.Mvc; 
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@*@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.ToDo>*@
 
 @{
     ViewBag.Title = "Index";
@@ -10,6 +15,9 @@
     @Html.ActionLink("Unesi novi", "Create")
 </p>
 
+@*@using (Html.BeginForm())
+{ <p> Unesi nadimak radnika: @Html.TextBox("searchStringNick") <input type="submit" value="Search" /></p> }*@
+
 <style>
     .col1 { width: 110px; }
 
@@ -17,11 +25,20 @@
 </style>
 
 
+@using (Html.BeginForm("Index", "ToDo", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("searchStringNick", ViewBag.CurrentFilter as string) <input type="submit" value="Search" />
+    </p>
+}
+
+
 <table class="table">
     <tr>
-        <th>
+        <th> @Html.ActionLink("Radnik", "Index", new { sortOrder = ViewBag.NickSortParm }) </th>
+        @*<th>
             Radnik
-        </th>
+        </th>*@
         <th>
             Opis posla
         </th>
@@ -32,7 +49,8 @@
             Spreman
         </th>
         <th class="col2">
-            Kreirano
+            @Html.ActionLink("Kreirano", "Index", new { sortOrder = ViewBag.CreatedSortParm })
+            @*Kreirano*@
         </th>
         <th class="col1"></th>
     </tr>
@@ -64,3 +82,6 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
