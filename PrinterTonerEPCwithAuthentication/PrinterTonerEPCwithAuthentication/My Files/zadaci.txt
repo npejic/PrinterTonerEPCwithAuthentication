@@ -15,6 +15,9 @@ dobijaš: -nema instanciranja klase DataContext, samim tim možeš da mokuješ
 
 
 Šimić: 
+- na HomeIndexView dodati searchBox za Nick
+- na ToDoIndexView dodati searchBox za poslove + sort za Kreiran TOP najmlađi bez zatvorenih
+
 - ugovori - dodati bool važeći ili ne			---OK
 		  - promena ugovora u SaleTabeli, stari ugovor ide u Alternate, a novi se upisuje
 - users - ubaciti kolone stari GO, novi GO

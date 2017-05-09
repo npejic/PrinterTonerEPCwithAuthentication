@@ -49,7 +49,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                     toDoes = toDoes.OrderBy(s => s.ApplicationUser.Nick);
                     break;
             }
-            int pageSize = 20; 
+            int pageSize = 33; 
             int pageNumber = (page ?? 1);
 
             return View(toDoes.ToPagedList(pageNumber, pageSize));
