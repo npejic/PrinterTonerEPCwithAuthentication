@@ -37,9 +37,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
 
                 var inactiveOwners = from i in db.Contracts select i;
-                var Today = DateTime.Now.Date.AddMonths(-3); //.Date is not suported by LINQ
+                var Today = DateTime.Now.Date; //.Date is not suported by LINQ
 
-                inactiveOwners = inactiveOwners.Include(o => o.Owner).Where(a => DbFunctions.AddMonths(a.ContractDate, a.ContactDuration) < Today);
+                inactiveOwners = inactiveOwners.Include(o => o.Owner).Where(a => DbFunctions.AddMonths(a.ContractDate, a.ContactDuration-2) < Today);
 
                 return View(inactiveOwners.ToList());
             }
