@@ -39,18 +39,23 @@
             Ugovor @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
         </th>
         <th>
-            Štampač @*@Html.DisplayNameFor(model => model.Printer.PrinterInternalNo)*@
+            Proizvođač štampača
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Serijski broj
+        </th>
+        <th>
+            Datum postavke@*@Html.DisplayNameFor(model => model.SaleDate)*@
+        </th>
+        <th>
+            Vrednost € @*@Html.DisplayNameFor(model => model.Price)*@
         </th>
 
         <th>
-            Datum @*@Html.DisplayNameFor(model => model.SaleDate)*@
-        </th>
-        <th>
-            Cena @*@Html.DisplayNameFor(model => model.Price)*@
-        </th>
-
-        <th>
-            Novi ugovor @*@Html.DisplayNameFor(model => model.AlternateContract)*@
+            Veza ugovora @*@Html.DisplayNameFor(model => model.AlternateContract)*@
         </th>
         @*<th>
                 @Html.DisplayNameFor(model => model.Created)
@@ -65,7 +70,13 @@
                 @Html.DisplayFor(modelItem => item.Contract.Owner.OwnerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Contract.ContractName)
+                @Html.DisplayFor(modelItem => item.Printer.PrinterManufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Printer.PrinterModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Printer.PrinterSerialNo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Printer.PrinterSerialNo)
