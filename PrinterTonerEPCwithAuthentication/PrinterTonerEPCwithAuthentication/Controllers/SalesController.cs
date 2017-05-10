@@ -34,6 +34,64 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             return View(sales.ToList());
         }
 
+        /// <summary>
+        /// Action Method using viewAsPdf class to create view as pdf ROTATIVA
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DownloadPDF()
+        {
+            try
+            {
+                var model = new Sale();
+
+                //get the information to display in pdf from database
+                //for the time
+                //Hard coding values are here, these are the content to display in pdf 
+                var content = "<h2>WOW Rotativa<h2>" +
+                 "<p>Ohh This is very easy to generate pdf using Rotativa <p>";
+                var logoFile = @"/Images/logo.png";
+
+                model.PDFContent = content;
+                model.PDFLogo = Server.MapPath(logoFile);
+
+                //Use ViewAsPdf Class to generate pdf using GeneratePDF.cshtml view
+                return new Rotativa.ViewAsPdf("GeneratePDF", model) { FileName = "firstPdf.pdf" };
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Action method to return view as pdf
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GeneratePDF()
+        {
+            try
+            {
+                var model = new Sale();
+                //Your data from db
+
+                //hard coded value for test purpose
+                var content = "<h2>PDF Created<h2>" +
+                "<p>Ohh This is very easy to generate pdf using Rotativa<p>";
+                var logoFile = @"/Images/logo.png";
+
+                //model.PDFContent = content;
+                //model.PDFLogo = Server.MapPath(logoFile);
+
+                return View();
+                //return View(model);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)
