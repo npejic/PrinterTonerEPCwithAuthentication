@@ -48,7 +48,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
+            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName"); //TODO: ovo ne treba
             
             var chosenOwner = (int)TempData["OwnerID"];
             var printersBySelectedOwner = db.Printers.Where(p => p.OwnerID == chosenOwner);
