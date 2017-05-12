@@ -368,6 +368,7 @@
     <Content Include="Views\Sales\SalesReportByOwner.cshtml" />
     <Content Include="Views\Sales\EditSalesReportByOwner.cshtml" />
     <Content Include="Views\ErrorPage\ErrorMessage.cshtml" />
+    <Content Include="Views\Sales\DownloadPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

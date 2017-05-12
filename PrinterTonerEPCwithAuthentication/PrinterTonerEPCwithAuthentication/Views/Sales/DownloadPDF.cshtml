@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.Sale>
+
+@{
+    ViewBag.Title = "DownloadPDF";
+}
+
+<h2>Lokacija štampača po ugovorima</h2>
+
+@*@using (Html.BeginForm())
+{ <p> Vlasnik: @Html.TextBox("searchByOwner") <input type="submit" value="Search" /></p> }*@
+
+<table class="table">
+    <tr>
+        <th>
+            Firma
+        </th>
+        <th>
+            Ugovor @*@Html.DisplayNameFor(model => model.Contract.ContractName)*@
+        </th>
+        <th>
+            Proizvođač štampača
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Serijski broj
+        </th>
+        <th>
+            Datum postavke@*@Html.DisplayNameFor(model => model.SaleDate)*@
+        </th>
+        <th>
+            Vrednost € @*@Html.DisplayNameFor(model => model.Price)*@
+        </th>
+
+        <th>
+            Veza ugovora @*@Html.DisplayNameFor(model => model.AlternateContract)*@
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract.Owner.OwnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract.ContractName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Printer.PrinterManufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Printer.PrinterModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Printer.PrinterSerialNo)
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.SaleDate))
+                @*@Html.DisplayFor(modelItem => item.SaleDate)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlternateContract)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>*@
+
+
+
+            <td>
+                @Html.ActionLink("Izmeni", "EditSalesReportByOwner", new { id = item.SaleID }) @*|*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.SaleID }) |*@
+                @*@Html.ActionLink("Izbriši", "Delete", new { id = item.SaleID })*@
+            </td>
+        </tr>
+    }
+
+</table>

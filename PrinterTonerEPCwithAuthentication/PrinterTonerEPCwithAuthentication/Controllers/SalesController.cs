@@ -42,20 +42,21 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             try
             {
-                var model = new Sale();
+                //var model = new Sale();
 
                 //get the information to display in pdf from database
                 //for the time
                 //Hard coding values are here, these are the content to display in pdf 
-                var content = "<h2>WOW Rotativa<h2>" +
-                 "<p>Ohh This is very easy to generate pdf using Rotativa <p>";
-                var logoFile = @"/Images/logo.png";
+                //var content = "<h2>WOW Rotativa<h2>" + "<p>Ohh This is very easy to generate pdf using Rotativa <p>";
+                //var logoFile = @"/Images/logo.png";
 
-                model.PDFContent = content;
-                model.PDFLogo = Server.MapPath(logoFile);
+                //model.PDFContent = content;
+                //model.PDFLogo = Server.MapPath(logoFile);
 
                 //Use ViewAsPdf Class to generate pdf using GeneratePDF.cshtml view
-                return new Rotativa.ViewAsPdf("GeneratePDF", model) { FileName = "firstPdf.pdf" };
+                var sales = db.Sales.Include(s => s.Contract).Include(s => s.Printer).OrderBy(s => s.Contract.ContractName).ThenBy(s => s.Contract.ContractDate);
+                return new Rotativa.ViewAsPdf("SalesReportByOwner", sales.ToList());
+                //return new Rotativa.ViewAsPdf("GeneratePDF", model) { FileName = "firstPdf.pdf" };
             }
             catch (Exception ex)
             {
@@ -76,9 +77,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 //Your data from db
 
                 //hard coded value for test purpose
-                var content = "<h2>PDF Created<h2>" +
-                "<p>Ohh This is very easy to generate pdf using Rotativa<p>";
-                var logoFile = @"/Images/logo.png";
+                //var content = "<h2>PDF Created<h2>" +
+                //"<p>Ohh This is very easy to generate pdf using Rotativa<p>";
+                //var logoFile = @"/Images/logo.png";
 
                 //model.PDFContent = content;
                 //model.PDFLogo = Server.MapPath(logoFile);
