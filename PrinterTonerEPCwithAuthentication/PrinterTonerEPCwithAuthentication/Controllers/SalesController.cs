@@ -28,7 +28,23 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
             if (!string.IsNullOrEmpty(searchByOwner))
             {
+                Session["searchByOwner"] = searchByOwner;
                 sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);// && s.printer.isepcprinter==true);
+            }
+
+            return View(sales.ToList());
+        }
+
+        // SalesReportByOwner modified forexport to pdf
+        public ActionResult SalesReportByOwnerToPDF(string searchByOwner)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var sales = db.Sales.Where(s => s.Printer.Owner.OwnerName == "EPC DOO").OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
+
+            if (!string.IsNullOrEmpty(searchByOwner))
+            {
+                string insertedOwner = (string)Session["searchByOwner"];
+                sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(insertedOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);// && s.printer.isepcprinter==true);
             }
 
             return View(sales.ToList());
@@ -55,7 +71,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
                 //Use ViewAsPdf Class to generate pdf using GeneratePDF.cshtml view
                 var sales = db.Sales.Include(s => s.Contract).Include(s => s.Printer).OrderBy(s => s.Contract.ContractName).ThenBy(s => s.Contract.ContractDate);
-                return new Rotativa.ViewAsPdf("SalesReportByOwner", sales.ToList());
+                string insertedOwner = (string)Session["searchByOwner"];
+                sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(insertedOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
+                return new Rotativa.ViewAsPdf("SalesReportByOwnerToPDF", sales.ToList());
                 //return new Rotativa.ViewAsPdf("GeneratePDF", model) { FileName = "firstPdf.pdf" };
             }
             catch (Exception ex)

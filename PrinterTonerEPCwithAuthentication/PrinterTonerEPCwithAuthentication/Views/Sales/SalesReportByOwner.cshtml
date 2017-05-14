@@ -9,6 +9,9 @@
 @using (Html.BeginForm())
 { <p> Vlasnik: @Html.TextBox("searchByOwner") <input type="submit" value="Search" /></p> }
 
+<h2>@Html.ActionLink("Kreiraj PDF", "DownloadPDF")</h2>
+
+
 @*@using (Html.BeginForm())
     { <p> Novi ugovor: @Html.TextBox("ModifyAlternateContract") <input type="submit" value="Search" /></p> }*@
 
