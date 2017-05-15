@@ -102,6 +102,10 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contract contract = db.Contracts.Find(id);
+
+            //TODO: izmena svih kretanja štampača koji su na tom ugovoru
+            TempData["currentConctract"] = contract.ContractName;
+            
             if (contract == null)
             {
                 return HttpNotFound();
@@ -119,6 +123,16 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 if (ModelState.IsValid)
                 {
                     db.Entry(contract).State = EntityState.Modified;
+
+                    //TODO: dodati deo gde Sale.Conctract -> Sale.AlternateContract
+                    string currentConctract = (string)TempData["currentConctract"];
+                    //lista svih kretanja tonera za dati ugovor
+                    var currentConctractSales = db.Sales.Where(c => c.Contract.ContractName == currentConctract);
+                    foreach (var aa in currentConctractSales)
+                    {
+                        aa.AlternateContract = currentConctract;
+                    }
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
