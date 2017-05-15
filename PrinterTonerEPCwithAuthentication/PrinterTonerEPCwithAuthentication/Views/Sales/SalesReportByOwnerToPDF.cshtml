@@ -19,9 +19,6 @@
             Vrednost €
         </th>
         <th>
-            Oznaka toner kasete
-        </th>
-        <th>
             Serijski broj
         </th>
         <th>
@@ -30,11 +27,6 @@
         <th>
             Lokacija
         </th>
-
-        <th>
-            Faza
-        </th>
-        
         <th></th>
     </tr>
 
@@ -51,19 +43,13 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Printer.PrinterModel)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Printer.PrinterSerialNo)
             </td>
             <td>
                 @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.SaleDate))
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlternateContract)
+                @Html.DisplayFor(modelItem => item.Remark)
             </td>
           
         </tr>

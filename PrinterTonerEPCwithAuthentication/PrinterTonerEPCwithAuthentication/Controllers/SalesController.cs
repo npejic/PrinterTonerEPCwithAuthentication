@@ -30,6 +30,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 Session["searchByOwner"] = searchByOwner;
                 sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);// && s.printer.isepcprinter==true);
+                Session["ContractName"] = from r in sales
+                                   where r.ContractID == 1
+                                   select r.Contract.ContractName;
             }
 
             return View(sales.ToList());
