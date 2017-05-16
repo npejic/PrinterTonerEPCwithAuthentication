@@ -29,10 +29,20 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             if (!string.IsNullOrEmpty(searchByOwner))
             {
                 Session["searchByOwner"] = searchByOwner;
-                sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);// && s.printer.isepcprinter==true);
-                Session["ContractName"] = from r in sales
-                                   where r.ContractID == 1
-                                   select r.Contract.ContractName;
+
+                sales = sales.Where(s => s.Contract.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
+               
+                Session["contractName"] = ( from r in sales
+                                            where r.Contract.Owner.OwnerName == searchByOwner
+                                            select r.Contract.ContractName).First();
+                var contractDate = ( from r in sales
+                                      where r.Contract.Owner.OwnerName == searchByOwner
+                                      select r.Contract.ContractDate).First();
+                var contractDuration = (from r in sales
+                                        where r.Contract.Owner.OwnerName == searchByOwner
+                                        select r.Contract.ContactDuration).First();
+                TempData["contractLastUntil"] = contractDate.AddMonths(contractDuration).ToShortDateString();
+                Session["contractDate"] = contractDate.ToShortDateString();
             }
 
             return View(sales.ToList());
