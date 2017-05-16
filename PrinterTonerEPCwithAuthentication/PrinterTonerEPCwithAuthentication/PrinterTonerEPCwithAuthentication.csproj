@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ServisController.cs" />
     <Compile Include="Controllers\ToDoesController.cs" />
     <Compile Include="Controllers\TonersController.cs" />
+    <Compile Include="Controllers\TreasuriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -373,6 +374,11 @@
     <Content Include="Views\ErrorPage\ErrorMessage.cshtml" />
     <Content Include="Views\Sales\DownloadPDF.cshtml" />
     <Content Include="Views\Sales\SalesReportByOwnerToPDF.cshtml" />
+    <Content Include="Views\Treasuries\Create.cshtml" />
+    <Content Include="Views\Treasuries\Delete.cshtml" />
+    <Content Include="Views\Treasuries\Details.cshtml" />
+    <Content Include="Views\Treasuries\Edit.cshtml" />
+    <Content Include="Views\Treasuries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

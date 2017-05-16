@@ -60,6 +60,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
             throw new NotImplementedException();
         }
 
+        public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.Treasury> Treasuries { get; set; }
+
+        //public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.ApplicationUser> ApplicationUsers { get; set; }
+
         //public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.User> Users1 { get; set; }
     }
 }
