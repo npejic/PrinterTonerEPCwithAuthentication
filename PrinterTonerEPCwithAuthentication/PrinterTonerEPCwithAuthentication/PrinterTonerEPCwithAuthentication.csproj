@@ -198,6 +198,7 @@
     <Compile Include="Models\Servis.cs" />
     <Compile Include="Models\ToDo.cs" />
     <Compile Include="Models\Toner.cs" />
+    <Compile Include="Models\Treasury.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
