@@ -4,27 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ukupan iznos u kasi je @TempData["treasurySumRSD"] dinara i @TempData["treasurySumEUR"] evra</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj iznos", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.FullName)
+            Iznos RSD
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            Iznos €
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Expence)
+            Tip troška
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remark)
+            Napomena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            Kreirano
         </th>
         <th></th>
     </tr>
@@ -32,10 +32,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+            @Html.DisplayFor(modelItem => item.AmountRSD)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Amount)
+            @Html.DisplayFor(modelItem => item.AmountEUR)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Expence)
@@ -44,12 +44,13 @@
             @Html.DisplayFor(modelItem => item.Remark)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Created)
+            @*@Html.DisplayFor(modelItem => item.Created)*@
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy HH:mm}", item.Created))
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TreasuryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TreasuryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TreasuryID })
+            @Html.ActionLink("Izmena", "Edit", new { id=item.TreasuryID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.TreasuryID }) |*@
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.TreasuryID })
         </td>
     </tr>
 }

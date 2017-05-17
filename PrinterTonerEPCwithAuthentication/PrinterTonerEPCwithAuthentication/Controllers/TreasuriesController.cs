@@ -17,7 +17,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: Treasuries
         public ActionResult Index()
         {
-            //double plusSum = db.Treasuries.Where(x => x.Expence == )
+            TempData["treasurySumRSD"] = db.Treasuries.Sum(c => c.AmountRSD);
+            TempData["treasurySumEUR"] = db.Treasuries.Sum(c => c.AmountEUR);
+            
             var treasuries = db.Treasuries;//.Include(t => t.ApplicationUser);
             return View(treasuries.ToList());
         }
@@ -49,7 +51,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TreasuryID,ApplicationUserID,Amount,Expence,Remark,Created")] Treasury treasury)
+        public ActionResult Create([Bind(Include = "TreasuryID,ApplicationUserID,AmountRSD,AmountEUR,Expence,Remark,Created")] Treasury treasury)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +85,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TreasuryID,ApplicationUserID,Amount,Expence,Remark,Created")] Treasury treasury)
+        public ActionResult Edit([Bind(Include = "TreasuryID,ApplicationUserID,AmountRSD,AmountEUR,Expence,Remark,Created")] Treasury treasury)
         {
             if (ModelState.IsValid)
             {
