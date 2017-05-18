@@ -18,6 +18,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public double AmountRSD { get; set; }
         public double AmountEUR { get; set; }
         public enum TypeOfExpence { putarina, reprezentacija, uplata, ostalo}
+        //public enum TypeOfExpence { Banka, Gas, Gorivo, Kontakt provizija, Ostalo, Oprema, Plata, Pošta, Pozajmica, Prazne toner kasete, Putni troškovi, Reprezentacija, Rezervni delovi, Servis računara, Servis štampača, Toner kaseta }
         public TypeOfExpence Expence { get; set; }
         public string Remark { get; set; }
     }

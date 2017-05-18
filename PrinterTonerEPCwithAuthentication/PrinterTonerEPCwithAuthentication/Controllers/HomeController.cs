@@ -23,6 +23,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 var CountRentedPrinters = sales.Count();
                 ViewData["CountRentedPrinters"] = CountRentedPrinters;
 
+                TempData["treasurySumRSD"] = db.Treasuries.Sum(c => c.AmountRSD);
+                TempData["treasurySumEUR"] = db.Treasuries.Sum(c => c.AmountEUR);
+
                 //list of opened todoes (without closing date), shown on top of the HomeIndexView
                 //Include is for EAGER loading of ApplicationUser
                 openedTasks = db.ToDoes.Include(c=>c.ApplicationUser).Where(c => c.Closed == null).OrderBy(c => c.Created).ToList();

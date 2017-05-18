@@ -17,10 +17,10 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: Treasuries
         public ActionResult Index()
         {
-            //TempData["treasurySumRSD"] = db.Treasuries.Sum(c => c.AmountRSD);
-            //TempData["treasurySumEUR"] = db.Treasuries.Sum(c => c.AmountEUR);
+            TempData["treasurySumRSD"] = db.Treasuries.Sum(c => c.AmountRSD);
+            TempData["treasurySumEUR"] = db.Treasuries.Sum(c => c.AmountEUR);
             
-            var treasuries = db.Treasuries;//.Include(t => t.ApplicationUser);
+            var treasuries = db.Treasuries.OrderBy(c=>c.Created);//.Include(t => t.ApplicationUser);
             return View(treasuries.ToList());
         }
 
