@@ -1,0 +1,50 @@
+﻿@model PrinterTonerEPCwithAuthentication.Models.MakeToner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MakeToner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Toner.TonerModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toner.TonerModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeTonerDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeTonerDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeTonerQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeTonerQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MakeTonerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

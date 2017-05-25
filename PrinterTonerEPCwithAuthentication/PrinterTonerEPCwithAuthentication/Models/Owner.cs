@@ -44,5 +44,8 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public virtual ICollection<Contract> Contracts { get; set; }
         public virtual ICollection<Servis> Servis { get; set; }
         public virtual ICollection<Toner> Toners { get; set; }
+        public virtual ICollection<MakeToner> MakeToners { get; set; }
+        public virtual ICollection<ComplaintToner> ComplaintTonersFrom { get; set; }
+        public virtual ICollection<ComplaintToner> ComplaintTonersTo { get; set; }
     }
 }

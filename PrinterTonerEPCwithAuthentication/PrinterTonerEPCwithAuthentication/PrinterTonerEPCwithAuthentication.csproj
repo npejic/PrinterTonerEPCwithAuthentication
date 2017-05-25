@@ -169,9 +169,11 @@
     <Compile Include="App_Start\Startup.Auth - Copy.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComplaintTonersController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MakeTonersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\PrintersController.cs" />
@@ -188,8 +190,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseClass.cs" />
+    <Compile Include="Models\ComplaintToner.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MakeToner.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -378,6 +382,16 @@
     <Content Include="Views\Treasuries\Details.cshtml" />
     <Content Include="Views\Treasuries\Edit.cshtml" />
     <Content Include="Views\Treasuries\Index.cshtml" />
+    <Content Include="Views\MakeToners\Create.cshtml" />
+    <Content Include="Views\MakeToners\Delete.cshtml" />
+    <Content Include="Views\MakeToners\Details.cshtml" />
+    <Content Include="Views\MakeToners\Edit.cshtml" />
+    <Content Include="Views\MakeToners\Index.cshtml" />
+    <Content Include="Views\ComplaintToners\Create.cshtml" />
+    <Content Include="Views\ComplaintToners\Delete.cshtml" />
+    <Content Include="Views\ComplaintToners\Details.cshtml" />
+    <Content Include="Views\ComplaintToners\Edit.cshtml" />
+    <Content Include="Views\ComplaintToners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

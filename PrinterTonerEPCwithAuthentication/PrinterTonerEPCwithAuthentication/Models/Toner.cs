@@ -22,7 +22,8 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public string Remark { get; set; }
 
         public virtual ICollection<SaleToner> SaleToners { get; set; }
-
+        public virtual ICollection<ComplaintToner> ComplaintToners { get; set; }
+        public virtual ICollection<MakeToner> MakeToners { get; set; }
         public virtual ICollection<PrinterTonerCompatibility> PrinterTonerCompatibilitys { get; set; }
     }
 

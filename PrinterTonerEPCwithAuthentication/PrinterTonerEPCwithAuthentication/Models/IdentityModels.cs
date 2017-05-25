@@ -62,6 +62,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
 
         public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.Treasury> Treasuries { get; set; }
 
+        public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.MakeToner> MakeToners { get; set; }
+
+        public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.ComplaintToner> ComplaintToners { get; set; }
+
         //public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.ApplicationUser> ApplicationUsers { get; set; }
 
         //public System.Data.Entity.DbSet<PrinterTonerEPCwithAuthentication.Models.User> Users1 { get; set; }
