@@ -17,7 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: MakeToners
         public ActionResult Index()
         {
-            var makeToners = db.MakeToners.Include(m => m.Toner);
+            var makeToners = db.MakeToners.Include(m => m.Owner).Include(m => m.Toner);
             return View(makeToners.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: MakeToners/Create
         public ActionResult Create()
         {
+            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel");
             return View();
         }
@@ -48,7 +49,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,Remark,TonerID")] MakeToner makeToner)
+        public ActionResult Create([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,MakeTonerPrice,Remark,TonerID,OwnerID")] MakeToner makeToner)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", makeToner.OwnerID);
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", makeToner.TonerID);
             return View(makeToner);
         }
@@ -73,6 +75,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", makeToner.OwnerID);
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", makeToner.TonerID);
             return View(makeToner);
         }
@@ -82,7 +85,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,Remark,TonerID")] MakeToner makeToner)
+        public ActionResult Edit([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,MakeTonerPrice,Remark,TonerID,OwnerID")] MakeToner makeToner)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", makeToner.OwnerID);
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", makeToner.TonerID);
             return View(makeToner);
         }

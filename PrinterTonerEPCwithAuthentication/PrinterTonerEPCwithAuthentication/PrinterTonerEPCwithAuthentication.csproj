@@ -382,16 +382,16 @@
     <Content Include="Views\Treasuries\Details.cshtml" />
     <Content Include="Views\Treasuries\Edit.cshtml" />
     <Content Include="Views\Treasuries\Index.cshtml" />
-    <Content Include="Views\MakeToners\Create.cshtml" />
-    <Content Include="Views\MakeToners\Delete.cshtml" />
-    <Content Include="Views\MakeToners\Details.cshtml" />
-    <Content Include="Views\MakeToners\Edit.cshtml" />
-    <Content Include="Views\MakeToners\Index.cshtml" />
     <Content Include="Views\ComplaintToners\Create.cshtml" />
     <Content Include="Views\ComplaintToners\Delete.cshtml" />
     <Content Include="Views\ComplaintToners\Details.cshtml" />
     <Content Include="Views\ComplaintToners\Edit.cshtml" />
     <Content Include="Views\ComplaintToners\Index.cshtml" />
+    <Content Include="Views\MakeToners\Create.cshtml" />
+    <Content Include="Views\MakeToners\Delete.cshtml" />
+    <Content Include="Views\MakeToners\Details.cshtml" />
+    <Content Include="Views\MakeToners\Edit.cshtml" />
+    <Content Include="Views\MakeToners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

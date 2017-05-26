@@ -42,7 +42,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TonerID,TonerModel,TonerIsOriginal,TonerYield,TonerProductNo,TonerGram,Created")] Toner toner)
+        public ActionResult Create([Bind(Include = "TonerID,TonerModel,TonerIsOriginal,TonerYield,TonerProductNo,TonerGram,TonerMinQuantity,Created")] Toner toner)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TonerID,TonerModel,TonerIsOriginal,TonerYield,TonerGram,TonerProductNo,Created")] Toner toner)
+        public ActionResult Edit([Bind(Include = "TonerID,TonerModel,TonerIsOriginal,TonerYield,TonerGram,TonerProductNo,TonerMinQuantity,Created")] Toner toner)
         {
             if (ModelState.IsValid)
             {

@@ -12,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Owner.OwnerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.OwnerName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Toner.TonerModel)
         </dt>
 
@@ -33,6 +41,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.MakeTonerQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeTonerPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeTonerPrice)
         </dd>
 
         <dt>

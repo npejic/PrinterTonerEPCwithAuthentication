@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Izmena</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,7 +18,7 @@
         @Html.HiddenFor(model => model.ComplaintTonerID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ComplaintTonerDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ComplaintTonerDate, "Datum", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ComplaintTonerDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ComplaintTonerDate, "", new { @class = "text-danger" })
@@ -25,10 +26,36 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TonerID, "TonerID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TonerID, "Model tonera", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TonerID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TonerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComplaintFromOwnerID, "Podnosilac reklamacije", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ComplaintFromOwnerID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComplaintFromOwnerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComplaintToOwnerID, "Primalac reklamacije", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ComplaintToOwnerID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComplaintToOwnerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsReady, "Završena reklamacija", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsReady)
+                    @Html.ValidationMessageFor(model => model.IsReady, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -41,21 +68,32 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Izmeni" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Povratak", "Index")
 </div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
+
+}  

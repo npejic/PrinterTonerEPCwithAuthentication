@@ -4,24 +4,36 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Spisak svih reklamacija</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Unesi novu", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Toner.TonerModel)
+            Model tonera
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ComplaintTonerDate)
+            Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remark)
+            Podnosilac reklamacije
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            Primalac reklamacije
+        </th>
+        <th>
+            Količina
+        </th>
+        <th>
+            Završena reklamacija
+        </th>
+        <th>
+            Napomena
+        </th>
+        <th>
+            Kreirano
         </th>
         <th></th>
     </tr>
@@ -35,15 +47,27 @@
             @Html.DisplayFor(modelItem => item.ComplaintTonerDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ComplaintFromOwnerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplaintToOwnerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplaintTonerQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsReady)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Remark)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Created)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ComplaintTonerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ComplaintTonerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ComplaintTonerID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.ComplaintTonerID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ComplaintTonerID }) |*@
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.ComplaintTonerID })
         </td>
     </tr>
 }

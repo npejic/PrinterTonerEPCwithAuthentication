@@ -19,6 +19,7 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public int? TonerYield { get; set; }
         public int? TonerGram { get; set; }
         public string TonerProductNo { get; set; }
+        public int? TonerMinQuantity { get; set; }
         public string Remark { get; set; }
 
         public virtual ICollection<SaleToner> SaleToners { get; set; }

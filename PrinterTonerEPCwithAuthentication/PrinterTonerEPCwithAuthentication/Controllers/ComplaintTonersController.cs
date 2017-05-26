@@ -40,6 +40,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult Create()
         {
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel");
+            ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
+            ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
             return View();
         }
 
@@ -48,7 +50,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,Remark,Created")] ComplaintToner complaintToner)
+        public ActionResult Create([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,ComplaintFromOwnerID,ComplaintToOwnerID,IsReady,Remark,ComplaintTonerQuantity,Created")] ComplaintToner complaintToner)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +60,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
 
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", complaintToner.TonerID);
+            ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintFromOwnerID);
+            ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintToOwnerID);
             return View(complaintToner);
         }
 
@@ -82,7 +86,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,Remark,Created")] ComplaintToner complaintToner)
+        public ActionResult Edit([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,ComplaintFromOwnerID,ComplaintToOwnerID,IsReady,Remark,ComplaintTonerQuantity,Created")] ComplaintToner complaintToner)
         {
             if (ModelState.IsValid)
             {
