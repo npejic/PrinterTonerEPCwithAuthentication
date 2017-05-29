@@ -392,6 +392,8 @@
     <Content Include="Views\MakeToners\Details.cshtml" />
     <Content Include="Views\MakeToners\Edit.cshtml" />
     <Content Include="Views\MakeToners\Index.cshtml" />
+    <Content Include="Views\Home\DataEntry.cshtml" />
+    <Content Include="Views\Home\DataChange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

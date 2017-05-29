@@ -42,6 +42,13 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             return View();
         }
 
-       
+        public ActionResult DataEntry()
+        {
+            return View();
+        }
+        public ActionResult DataChange()
+        {
+            return View();
+        }
     }
 }

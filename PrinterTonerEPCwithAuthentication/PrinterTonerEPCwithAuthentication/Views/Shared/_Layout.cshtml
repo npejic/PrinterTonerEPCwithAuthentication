@@ -21,17 +21,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Firma", "Index", "Owners")</li>
+                    <li>@Html.ActionLink("Unos podataka", "DataEntry", "Home")</li>
+                    <li>@Html.ActionLink("Promena podataka", "DataChange", "Home")</li>
+                    @*<li>@Html.ActionLink("Firma", "Index", "Owners")</li>
                     <li>@Html.ActionLink("Štampač", "Index", "Printers")</li>
                     <li>@Html.ActionLink("Toner", "Index", "Toners")</li>
-                    <li>@Html.ActionLink("Ugovor", "Index", "Contracts")</li>
+                    <li>@Html.ActionLink("Ugovor", "Index", "Contracts")</li>*@
                     <li>@Html.ActionLink("Servis", "Index", "Servis")</li>
-                    <li>@Html.ActionLink("Kretanje štampača", "Index", "Sales")</li>
-                    <li>@Html.ActionLink("Kretanje tonera", "Index", "SaleToners")</li>
+                    @*<li>@Html.ActionLink("Kretanje štampača", "Index", "Sales")</li>
+                    <li>@Html.ActionLink("Kretanje tonera", "Index", "SaleToners")</li>*@
                     <li>@Html.ActionLink("TO DO", "Index", "ToDoes")</li>
                     <li>@Html.ActionLink("Ka$a", "Index", "Treasuries")</li>
-                    <li>@Html.ActionLink("Reklamacije", "Index", "ComplaintToners")</li>
-                    <li>@Html.ActionLink("Novi toneri", "Index", "MakeToners")</li>
+                    @*<li>@Html.ActionLink("Reklamacije", "Index", "ComplaintToners")</li>*@
+                    @*<li>@Html.ActionLink("Novi toneri", "Index", "MakeToners")</li>*@
                     <li>@Html.ActionLink("?", "Help", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
