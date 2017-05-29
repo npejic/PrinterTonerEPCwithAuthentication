@@ -26,37 +26,38 @@
         <th>
             Product No
         </th>
-        
-        @*<th>
-            Kreirano
-        </th>*@
+
+        <th>
+            Minimalna količina
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TonerModel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TonerIsOriginal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TonerYield)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TonerGram)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TonerProductNo)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>*@
-        <td>
-            @Html.ActionLink("Izmeni", "Edit", new { id=item.TonerID }) |
-            @Html.ActionLink("Izbriši", "Delete", new { id=item.TonerID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerIsOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerYield)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerGram)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerProductNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TonerMinQuantity)
+            </td>
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.TonerID }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.TonerID })
+            </td>
+        </tr>
+    }
 
 </table>
