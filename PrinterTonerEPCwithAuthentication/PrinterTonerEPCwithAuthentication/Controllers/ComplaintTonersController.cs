@@ -17,7 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: ComplaintToners
         public ActionResult Index()
         {
-            var complaintToners = db.ComplaintToners.Include(c => c.Toner);
+            var complaintToners = db.ComplaintToners.Include(c => c.Toner).OrderByDescending(c => c.ComplaintTonerDate);
             return View(complaintToners.ToList());
         }
 
