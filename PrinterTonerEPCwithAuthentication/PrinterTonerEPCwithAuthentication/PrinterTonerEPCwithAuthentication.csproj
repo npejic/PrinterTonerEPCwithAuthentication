@@ -259,6 +259,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\EPClogo.png" />
+    <Content Include="My Files\epc2017-jun-01 data.sql" />
     <Content Include="My Files\epc2017-maj-15 data.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
