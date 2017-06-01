@@ -32,5 +32,6 @@ namespace PrinterTonerEPCwithAuthentication.Models
     {
         public string TotalTonerModel { get; set; }
         public int TonerTotalCount { get; set; }
+        public int? TonerTotalMin { get; set; }
     }
 }

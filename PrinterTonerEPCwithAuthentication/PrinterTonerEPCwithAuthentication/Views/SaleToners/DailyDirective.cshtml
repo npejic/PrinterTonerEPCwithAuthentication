@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PrinterTonerEPCwithAuthentication.Models.TonerTotal>
+
+@{
+    ViewBag.Title = "DailyDirective";
+}
+
+<h2>DailyDirective</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Toner
+        </th>
+        <th>
+            Ukupno
+        </th>
+        <th>
+            Min
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalTonerModel)
+            </td>
+            <td>
+                @item.TonerTotalCount
+            </td>
+            <td>
+                @item.TonerTotalMin
+            </td>
+        </tr>
+    }
+
+</table>
