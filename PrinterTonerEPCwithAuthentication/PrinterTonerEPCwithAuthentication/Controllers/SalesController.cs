@@ -147,10 +147,14 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Create()
         {
-            var printersNotOwnedByEPC = db.Printers.Where(p => p.Owner.OwnerName == "EPC DOO").OrderBy(n=>n.PrinterSerialNo);
+            var printersOwnedByEPC = db.Printers.Where(p => p.Owner.OwnerName == "EPC DOO").OrderBy(n=>n.PrinterSerialNo);
+
+            // Get all printers from  printersOwnedByEPC where the record does not exist in Sale
+            var result = printersOwnedByEPC.Where(ah => !db.Sales.Any(h => h.PrinterID == ah.PrinterID)).ToList();
+
             var sortedContract = db.Contracts.OrderBy(n => n.ContractName).Where(n => n.ContractValid == true);
             ViewBag.ContractID = new SelectList(sortedContract, "ContractID", "ContractName");
-            ViewBag.PrinterID = new SelectList(printersNotOwnedByEPC, "PrinterID", "PrinterSerialNo");
+            ViewBag.PrinterID = new SelectList(result, "PrinterID", "PrinterSerialNo");
             
             return View();
         }
