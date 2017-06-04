@@ -20,7 +20,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             TempData["treasurySumRSD"] = db.Treasuries.Sum(c => c.AmountRSD);
             TempData["treasurySumEUR"] = db.Treasuries.Sum(c => c.AmountEUR);
             
-            var treasuries = db.Treasuries.OrderBy(c=>c.Created);//.Include(t => t.ApplicationUser);
+            var treasuries = db.Treasuries.OrderByDescending(c=>c.Created);//.Include(t => t.ApplicationUser);
             return View(treasuries.ToList());
         }
 

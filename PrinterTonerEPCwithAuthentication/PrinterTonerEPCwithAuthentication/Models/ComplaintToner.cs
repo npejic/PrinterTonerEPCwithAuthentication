@@ -18,8 +18,10 @@ namespace PrinterTonerEPCwithAuthentication.Models
         public int TonerID { get; set; }
         public virtual Toner Toner { get; set; }
 
-        public int ComplaintFromOwnerID { get; set; }
-        public int ComplaintToOwnerID { get; set; }
+        [ForeignKey("ComplaintFromOwner")]
+        public int? ComplaintFromOwnerID { get; set; }
+        [ForeignKey("ComplaintToOwner")]
+        public int? ComplaintToOwnerID { get; set; }
 
         public virtual Owner ComplaintFromOwner { get; set; }
         public virtual Owner ComplaintToOwner { get; set; }

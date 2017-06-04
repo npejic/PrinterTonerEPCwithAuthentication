@@ -396,6 +396,7 @@
     <Content Include="Views\Home\DataEntry.cshtml" />
     <Content Include="Views\Home\DataChange.cshtml" />
     <Content Include="Views\SaleToners\DailyDirective.cshtml" />
+    <Content Include="Views\SaleToners\WarehouseToner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

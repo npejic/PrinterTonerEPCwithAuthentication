@@ -4,7 +4,7 @@
     ViewBag.Title = "DailyDirective";
 }
 
-<h2>Dnevni nalog za punjenje i kupovinu</h2>
+<h2>Toneri - stanje magacina</h2>
 
 <table class="table">
     <tr>
@@ -16,9 +16,6 @@
         </th>
         <th>
             Minimalna količina
-        </th>
-        <th>
-            Razlika
         </th>
     </tr>
 
@@ -33,9 +30,6 @@
             </td>
             <td>
                 @item.TonerTotalMin
-            </td>
-            <td>
-                @(item.TonerTotalMin - item.TonerTotalCount)
             </td>
         </tr>
     }

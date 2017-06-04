@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Spisak svih reklamacija</h2>
+<h2>Pregled reklamacija</h2>
 
 <p>
     @Html.ActionLink("Unesi novu", "Create")
@@ -44,13 +44,13 @@
             @Html.DisplayFor(modelItem => item.Toner.TonerModel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ComplaintTonerDate)
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ComplaintTonerDate))
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ComplaintFromOwnerID)
+            @Html.DisplayFor(modelItem => item.ComplaintFromOwner.OwnerName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ComplaintToOwnerID)
+            @Html.DisplayFor(modelItem => item.ComplaintToOwner.OwnerName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ComplaintTonerQuantity)
