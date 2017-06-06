@@ -4,30 +4,30 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Napunjeni/kupljeni toneri</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Unos novog", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Owner.OwnerName)
+            Od
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Toner.TonerModel)
+            Model
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MakeTonerDate)
+            Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MakeTonerQuantity)
+            Količina
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MakeTonerPrice)
+           Cena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remark)
+            Napomena
         </th>
         <th></th>
     </tr>
@@ -54,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MakeTonerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MakeTonerID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.MakeTonerID }) |*@
             @Html.ActionLink("Delete", "Delete", new { id=item.MakeTonerID })
         </td>
     </tr>
