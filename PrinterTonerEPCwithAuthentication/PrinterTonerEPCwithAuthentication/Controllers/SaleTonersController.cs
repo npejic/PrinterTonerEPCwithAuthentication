@@ -80,16 +80,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                                   TonerTotalCount = x1.TonerTotalCount - (x2 != null ? x2.TonerTotalCount : 0),
                                   TonerTotalMin = x3.TonerMinQuantity
                               };
-            differences = differences.Where(c => c.TonerTotalCount <= c.TonerTotalMin).OrderBy(c => c.TonerTotalCount);
-
-            //var differences = from x1 in madeToners
-            //                  join x2 in soldToners on x1.TotalTonerModel equals x2.TotalTonerModel into temp
-            //                  from x2 in temp.DefaultIfEmpty()
-            //                  select new TonerTotal
-            //                  {
-            //                      TotalTonerModel = x1.TotalTonerModel,
-            //                      TonerTotalCount = x1.TonerTotalCount - (x2 != null ? x2.TonerTotalCount : 0)
-            //                  };
+            differences = differences.Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
 
             return View(differences);
         }

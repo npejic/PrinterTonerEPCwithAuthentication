@@ -39,8 +39,11 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: MakeToners/Create
         public ActionResult Create()
         {
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel");
+            var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+            ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
+
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel");
             return View();
         }
 
