@@ -78,6 +78,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return HttpNotFound();
             }
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", complaintToner.TonerID);
+            ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintFromOwnerID);
+            ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintToOwnerID);
             return View(complaintToner);
         }
 
@@ -95,6 +97,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", complaintToner.TonerID);
+            ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintFromOwnerID);
+            ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintToOwnerID);
             return View(complaintToner);
         }
 

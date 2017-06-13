@@ -20,9 +20,9 @@
         <th>
             Podnosilac reklamacije
         </th>
-        <th>
+        @*<th>
             Primalac reklamacije
-        </th>
+        </th>*@
         <th>
             Količina
         </th>
@@ -32,9 +32,9 @@
         <th>
             Napomena
         </th>
-        <th>
+        @*<th>
             Kreirano
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -49,9 +49,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.ComplaintFromOwner.OwnerName)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ComplaintToOwner.OwnerName)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.ComplaintTonerQuantity)
         </td>
@@ -61,9 +61,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Remark)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Created)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Izmeni", "Edit", new { id=item.ComplaintTonerID }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.ComplaintTonerID }) |*@

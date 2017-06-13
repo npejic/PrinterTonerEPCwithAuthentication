@@ -261,11 +261,13 @@
     <Content Include="Images\EPClogo.png" />
     <Content Include="My Files\epc2017-jun-08 data.sql" />
     <Content Include="My Files\epc2017-maj-15 data.sql" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="My Files\EPC Authentication.sql" />
     <Content Include="My Files\zadaci.txt" />
     <Content Include="App_Browsers\qt.browser" />
+    <None Include="Properties\PublishProfiles\pejicn EPC.pubxml" />
     <None Include="Properties\PublishProfiles\pejicr EPC.pubxml" />
     <None Include="Properties\PublishProfiles\printertonertracker - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\printertonertracker - Web Deploy.pubxml" />
@@ -284,7 +286,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -402,7 +406,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Rotativa\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
