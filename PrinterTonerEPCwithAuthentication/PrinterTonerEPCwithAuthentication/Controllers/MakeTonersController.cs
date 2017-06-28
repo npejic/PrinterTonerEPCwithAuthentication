@@ -48,8 +48,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // POST: MakeToners/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,MakeTonerPrice,Remark,TonerID,OwnerID")] MakeToner makeToner)
@@ -84,8 +82,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // POST: MakeToners/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MakeTonerID,MakeTonerDate,MakeTonerQuantity,MakeTonerPrice,Remark,TonerID,OwnerID")] MakeToner makeToner)

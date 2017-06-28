@@ -46,8 +46,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // POST: ComplaintToners/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,ComplaintFromOwnerID,ComplaintToOwnerID,IsReady,Remark,ComplaintTonerQuantity,Created")] ComplaintToner complaintToner)
@@ -84,8 +82,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // POST: ComplaintToners/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ComplaintTonerID,ComplaintTonerDate,TonerID,ComplaintFromOwnerID,ComplaintToOwnerID,IsReady,Remark,ComplaintTonerQuantity,Created")] ComplaintToner complaintToner)

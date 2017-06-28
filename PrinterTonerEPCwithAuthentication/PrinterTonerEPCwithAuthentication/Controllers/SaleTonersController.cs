@@ -16,16 +16,12 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Index()
         {
-            //var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner)
-            //                    .OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
-
             var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
 
             return View(saleToners.ToList());
         }
 
-        //Izveštaj - stanje magacina
-        //Report No.8
+        //Report No.8 - number of all toner models in warehouse 
         public ActionResult WarehouseToner()
         {
             var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
