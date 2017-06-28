@@ -12,8 +12,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 {
     public class ContractsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
-
         /// <summary>
         /// All contracts
         /// </summary>
@@ -22,7 +20,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var contracts = db.Contracts.Include(c => c.Owner).OrderByDescending(c => c.ContractDate);//.OrderBy(c => c.Owner.OwnerName).ThenBy(c => c.ContractDate);
+                var contracts = db.Contracts.Include(c => c.Owner).OrderByDescending(c => c.ContractDate);
                 return View(contracts.ToList());
             }
         }
@@ -35,7 +33,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-
                 var inactiveOwners = from i in db.Contracts select i;
                 var Today = DateTime.Now.Date; //.Date is not suported by LINQ
 
@@ -93,25 +90,26 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
         }
 
-        //TODO: nije implementiran USING()
         public ActionResult Edit(int? id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contract contract = db.Contracts.Find(id);
-
-            //TODO: izmena svih kretanja štampača koji su na tom ugovoru
-            TempData["currentConctract"] = contract.ContractName;
-            
-            if (contract == null)
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                return HttpNotFound();
+                Contract contract = db.Contracts.Find(id);
+
+                //TODO: izmena svih kretanja štampača koji su na tom ugovoru
+                TempData["currentConctract"] = contract.ContractName;
+
+                if (contract == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
+                return View(contract);
             }
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
-            return View(contract);
         }
 
         [HttpPost]
@@ -144,20 +142,21 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //TODO: nije implementiran USING()
         public ActionResult Delete(int? id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-
-                Contract contract = db.Contracts.Find(id);
-                if (contract == null)
+                using (ApplicationDbContext db = new ApplicationDbContext())
                 {
-                    return HttpNotFound();
+                    Contract contract = db.Contracts.Find(id);
+                    if (contract == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(contract);
                 }
-                return View(contract);
-            
         }
 
         [HttpPost, ActionName("Delete")]
