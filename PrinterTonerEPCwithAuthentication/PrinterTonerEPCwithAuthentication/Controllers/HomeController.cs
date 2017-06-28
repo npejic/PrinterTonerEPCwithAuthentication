@@ -37,15 +37,16 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Help()
         {
-            //ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
+        // Displays links for entering new data
         public ActionResult DataEntry()
         {
             return View();
         }
+
+        // Displays links for changing data
         public ActionResult DataChange()
         {
             return View();
