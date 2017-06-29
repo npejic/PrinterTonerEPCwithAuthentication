@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth - Copy.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\SaleTonersControllerMethods.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ComplaintTonersController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
