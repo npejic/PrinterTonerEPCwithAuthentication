@@ -168,7 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth - Copy.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Common\SaleTonersControllerMethods.cs" />
+    <Compile Include="Common\ControllerMethods.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ComplaintTonersController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
@@ -349,7 +349,6 @@
     <Content Include="Views\Sales\Index.cshtml" />
     <Content Include="Views\SaleToners\Create.cshtml" />
     <Content Include="Views\SaleToners\Delete.cshtml" />
-    <Content Include="Views\SaleToners\Details.cshtml" />
     <Content Include="Views\SaleToners\Edit.cshtml" />
     <Content Include="Views\SaleToners\Index.cshtml" />
     <Content Include="Views\SaleToners\LastTonerSale.cshtml" />

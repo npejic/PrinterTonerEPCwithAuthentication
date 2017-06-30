@@ -6,6 +6,12 @@
 
 <h2>Sva kretanja tonera</h2>
 
+<style>
+    .col1 {
+        width: 110px;
+    }
+</style>
+
 <p>
     @Html.ActionLink("Unesi novo", "Create")
 </p>
@@ -29,7 +35,7 @@
         <th>
             Faktura
         </th>
-        <th></th>
+        <th class="col1"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -54,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.InvoiceNo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SaleTonerID }) |
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.SaleTonerID }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.SaleTonerID }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.SaleTonerID })
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.SaleTonerID })
         </td>
     </tr>
 }

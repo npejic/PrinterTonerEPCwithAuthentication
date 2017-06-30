@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PrinterTonerEPCwithAuthentication.Models;
+using PrinterTonerEPCwithAuthentication.Common;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
@@ -24,60 +25,16 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.8 - number of all toner models in warehouse 
         public ActionResult WarehouseToner()
         {
-            var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-            {
-                TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c => c.TonerQuantity),
-            }).OrderByDescending(c => c.TonerTotalCount).ToList();
-
-            var madeToners = db.MakeToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-            {
-                TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c => c.MakeTonerQuantity),
-            }).OrderByDescending(c => c.TonerTotalCount).ToList();
-
-            var differences = from x1 in madeToners
-                              join x2 in soldToners on x1.TotalTonerModel equals x2.TotalTonerModel into temp
-                              join x3 in db.Toners on x1.TotalTonerModel equals x3.TonerModel
-                              from x2 in temp.DefaultIfEmpty()
-                              select new TonerTotal
-                              {
-                                  TotalTonerModel = x1.TotalTonerModel,
-                                  TonerTotalCount = x1.TonerTotalCount - (x2 != null ? x2.TonerTotalCount : 0),
-                                  TonerTotalMin = x3.TonerMinQuantity
-                              };
-
+            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners();
             return View(differences);
+
         }
         
-        //Izvešta po tipovima tonera
-        //Report No.7
+        //Report No.7 - daily directive for making toners which quantity is bellow the minimal requirement
         public ActionResult DailyDirective()
         {
-            var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-            {
-                TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c => c.TonerQuantity),
-            }).OrderByDescending(c => c.TonerTotalCount).ToList();
-
-            var madeToners = db.MakeToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-            {
-                TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c => c.MakeTonerQuantity),
-            }).OrderByDescending(c => c.TonerTotalCount).ToList();
-
-            var differences = from x1 in madeToners
-                              join x2 in soldToners on x1.TotalTonerModel equals x2.TotalTonerModel into temp
-                              join x3 in db.Toners on x1.TotalTonerModel equals x3.TonerModel
-                              from x2 in temp.DefaultIfEmpty()
-                              select new TonerTotal
-                              {
-                                  TotalTonerModel = x1.TotalTonerModel,
-                                  TonerTotalCount = x1.TonerTotalCount - (x2 != null ? x2.TonerTotalCount : 0),
-                                  TonerTotalMin = x3.TonerMinQuantity
-                              };
-            differences = differences.Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
-
+           
+            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
             return View(differences);
         }
                 
@@ -114,7 +71,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
 
-        //Report No.6
+        //Report No.6 - total sum of sold toners by sorted by model
         public ActionResult TotalTonerSale(string dateFromString, string dateToString)
         {
             var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
@@ -151,33 +108,25 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.4
         public ActionResult LastTonerSale(string searchByOwner, string searchByToner)
         {
-            var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID }).Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
+            var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID })
+                .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
+
+            //if (!String.IsNullOrEmpty(searchByOwner))
+            //{
+            //    lastTonerSale = lastTonerSale.Where(o => o.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
+            //}
+
+            //if (!String.IsNullOrEmpty(searchByToner))
+            //{
+            //    lastTonerSale = lastTonerSale.Where(o => o.Toner.TonerModel.Contains(searchByToner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
+            //}
 
             if (!String.IsNullOrEmpty(searchByOwner))
             {
-                lastTonerSale = lastTonerSale.Where(o => o.Owner.OwnerName.Contains(searchByOwner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
-            }
-
-            if (!String.IsNullOrEmpty(searchByToner))
-            {
-                lastTonerSale = lastTonerSale.Where(o => o.Toner.TonerModel.Contains(searchByToner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
+                lastTonerSale = ControllerMethods.LastTonerSoldByOwnerOrTonerModel(lastTonerSale, searchByOwner);
             }
 
             return View(lastTonerSale.ToList());
-        }
-
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SaleToner saleToner = db.SaleToners.Find(id);
-            if (saleToner == null)
-            {
-                return HttpNotFound();
-            }
-            return View(saleToner);
         }
 
         public ActionResult Create()
