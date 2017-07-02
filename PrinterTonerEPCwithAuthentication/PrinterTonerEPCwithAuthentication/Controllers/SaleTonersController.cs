@@ -17,6 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Index()
         {
+            //returns ordered list of sold toners first by dae and then by owner
             var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
 
             return View(saleToners.ToList());
@@ -42,32 +43,29 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.5
         public ActionResult TonerAlarm(string periodInMonths)
         {
-            var ownersWithNoAlarmOrder = db.SaleToners
-                  .Where(c => c.Owner.OwnerIsActive == true)
-                  .GroupBy(c => c.OwnerID)
-                  .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(c => c.SaleTonerDate);
+            //var ownersWithNoAlarmOrder = db.SaleToners
+            //      .Where(c => c.Owner.OwnerIsActive == true)
+            //      .GroupBy(c => c.OwnerID)
+            //      .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(c => c.SaleTonerDate);
 
 
-            if (!String.IsNullOrEmpty(periodInMonths))
-            {
-                int period = Int16.Parse(periodInMonths);
-                var LimitDate = DateTime.Now.Date;
-                LimitDate = LimitDate.AddMonths(-period);
-                ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate).OrderBy(s => s.SaleTonerDate);
-            }
+            //if (!String.IsNullOrEmpty(periodInMonths))
+            //{
+            //    int period = Int16.Parse(periodInMonths);
+            //    var LimitDate = DateTime.Now.Date;
+            //    LimitDate = LimitDate.AddMonths(-period);
+            //    ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate).OrderBy(s => s.SaleTonerDate);
+            //}
+
+            var ownersWithNoAlarmOrder = ControllerMethods.OwnersWithNoTonerOrderInSomePeriod(periodInMonths);
             return View(ownersWithNoAlarmOrder.ToList());
         }
 
-        //Report No.5a
+        //Report No.5a - list of companies that didn't order any toner
         public ActionResult TonerAlarm2()
         {
-            var ownersWithNoAlarmOrder = db.Owners
-                                           .Where(c => !db.SaleToners
-                                           .Select(b => b.OwnerID)
-                                           .Contains(c.OwnerID)
-    );
-
-            return View(ownersWithNoAlarmOrder.ToList());
+            var ownersListWithNoOrder = ControllerMethods.OwnersWithNoTonerOrder();
+            return View(ownersListWithNoOrder.ToList());
         }
 
 
@@ -98,7 +96,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 soldToners = soldTonersInPeriod;
             }
 
-            //Izračunava ukupan broj EPC štampača na iznajmljivanju
+            //Izračunava ukupan broj prodatih tonera
             var CountSoldToners = soldToners.Sum(c => c.TonerTotalCount);
             ViewData["CountSoldToners"] = CountSoldToners;
 
@@ -108,8 +106,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.4
         public ActionResult LastTonerSale(string searchByOwner, string searchByToner)
         {
-            var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID })
-                .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
+            //var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID })
+            //    .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ToList();
 
             //if (!String.IsNullOrEmpty(searchByOwner))
             //{
@@ -121,11 +119,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             //    lastTonerSale = lastTonerSale.Where(o => o.Toner.TonerModel.Contains(searchByToner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
             //}
 
-            if (!String.IsNullOrEmpty(searchByOwner))
-            {
-                lastTonerSale = ControllerMethods.LastTonerSoldByOwnerOrTonerModel(lastTonerSale, searchByOwner);
-            }
-
+            var lastTonerSale = ControllerMethods.LastTonerSoldByOwnerOrTonerModel(searchByOwner, searchByToner);
             return View(lastTonerSale.ToList());
         }
 
