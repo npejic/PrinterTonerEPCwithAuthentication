@@ -40,8 +40,10 @@ namespace PrinterTonerEPCwithAuthentication.Common
 
         public static List<SaleToner> LastTonerSoldByOwnerOrTonerModel(string searchParameterOwner, string searchParameterTonerModel)
         {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
+            //TODO: prijavljuje grešku The ObjectContext instance has been disposed and can no longer be used for operations that require a connection
+            //using (ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            ApplicationDbContext db = new ApplicationDbContext();
                 var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID })
                     .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel);
 
@@ -56,7 +58,7 @@ namespace PrinterTonerEPCwithAuthentication.Common
                 }
 
                 return lastTonerSale.ToList();
-            }
+            //}
         }
 
         public static List<Owner> OwnersWithNoTonerOrder()
@@ -89,6 +91,47 @@ namespace PrinterTonerEPCwithAuthentication.Common
                 }
                 return ownersWithNoAlarmOrder.ToList();
             }
+        }
+
+        public static List<TonerTotal> ListOfAllSoldTonersInPeriod(string dateFromString, string dateToString)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+                {
+                    TotalTonerModel = r.Key,
+                    TonerTotalCount = r.Sum(c => c.TonerQuantity),
+                }).OrderByDescending(c => c.TonerTotalCount).ToList();
+
+                //TODO: missing part of the code which will do TryParse DateTime input
+                if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
+                {
+                    DateTime dateFrom = Convert.ToDateTime(dateFromString);
+                    //if (DateTime.TryParse(dateFromString, out dateFrom))
+                    //{
+
+                    //}
+                    DateTime dateTo = Convert.ToDateTime(dateToString);
+                    var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+                    {
+                        TotalTonerModel = r.Key,
+                        TonerTotalCount = r.Sum(c => c.TonerQuantity),
+                    }).OrderByDescending(c => c.TonerTotalCount).ToList();
+
+                    soldToners = soldTonersInPeriod;
+                }
+                return soldToners.ToList();
+            }
+        }
+
+        public static int SumOfAllSoldTonersInPeriod(List<TonerTotal> soldToners)
+        {
+             //Izračunava ukupan broj prodatih tonera
+            var CountSoldToners = soldToners.Sum(c => c.TonerTotalCount);
+            return CountSoldToners;
+            //ViewData["CountSoldToners"] = CountSoldToners;
+            
+        
         }
     }
 }

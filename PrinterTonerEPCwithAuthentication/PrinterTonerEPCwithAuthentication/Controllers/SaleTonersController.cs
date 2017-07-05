@@ -17,7 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Index()
         {
-            //returns ordered list of sold toners first by dae and then by owner
+            //returns ordered list of sold toners first by date and then by owner
             var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
 
             return View(saleToners.ToList());
@@ -43,6 +43,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.5
         public ActionResult TonerAlarm(string periodInMonths)
         {
+            #region za brisati
             //var ownersWithNoAlarmOrder = db.SaleToners
             //      .Where(c => c.Owner.OwnerIsActive == true)
             //      .GroupBy(c => c.OwnerID)
@@ -56,7 +57,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             //    LimitDate = LimitDate.AddMonths(-period);
             //    ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate).OrderBy(s => s.SaleTonerDate);
             //}
-
+            #endregion
             var ownersWithNoAlarmOrder = ControllerMethods.OwnersWithNoTonerOrderInSomePeriod(periodInMonths);
             return View(ownersWithNoAlarmOrder.ToList());
         }
@@ -72,33 +73,35 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.6 - total sum of sold toners by sorted by model
         public ActionResult TotalTonerSale(string dateFromString, string dateToString)
         {
-            var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-            {
-                TotalTonerModel = r.Key,
-                TonerTotalCount = r.Sum(c => c.TonerQuantity),
-            }).OrderByDescending(c => c.TonerTotalCount).ToList();
+            #region za brisati
+            //var soldToners = db.SaleToners.GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+            //{
+            //    TotalTonerModel = r.Key,
+            //    TonerTotalCount = r.Sum(c => c.TonerQuantity),
+            //}).OrderByDescending(c => c.TonerTotalCount).ToList();
 
-            //TODO: missing part of the code which will do TryParse DateTime input
-            if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
-            {
-                DateTime dateFrom = Convert.ToDateTime(dateFromString);
-                //if (DateTime.TryParse(dateFromString, out dateFrom))
-                //{
+            ////TODO: missing part of the code which will do TryParse DateTime input
+            //if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
+            //{
+            //    DateTime dateFrom = Convert.ToDateTime(dateFromString);
+            //    //if (DateTime.TryParse(dateFromString, out dateFrom))
+            //    //{
 
-                //}
-                DateTime dateTo = Convert.ToDateTime(dateToString);
-                var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
-                {
-                    TotalTonerModel = r.Key,
-                    TonerTotalCount = r.Sum(c => c.TonerQuantity),
-                }).OrderByDescending(c => c.TonerTotalCount).ToList();
+            //    //}
+            //    DateTime dateTo = Convert.ToDateTime(dateToString);
+            //    var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+            //    {
+            //        TotalTonerModel = r.Key,
+            //        TonerTotalCount = r.Sum(c => c.TonerQuantity),
+            //    }).OrderByDescending(c => c.TonerTotalCount).ToList();
 
-                soldToners = soldTonersInPeriod;
-            }
+            //    soldToners = soldTonersInPeriod;
+            //}
+            #endregion
+            var soldToners = ControllerMethods.ListOfAllSoldTonersInPeriod(dateFromString, dateToString);
 
             //Izračunava ukupan broj prodatih tonera
-            var CountSoldToners = soldToners.Sum(c => c.TonerTotalCount);
-            ViewData["CountSoldToners"] = CountSoldToners;
+            ViewData["CountSoldToners"] = ControllerMethods.SumOfAllSoldTonersInPeriod(soldToners);
 
             return View(soldToners.ToList());
         }
@@ -106,6 +109,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.4
         public ActionResult LastTonerSale(string searchByOwner, string searchByToner)
         {
+            #region za brisati
             //var lastTonerSale = db.SaleToners.Where(c => c.Owner.OwnerIsActive == true).GroupBy(g => new { g.Owner.OwnerName, g.TonerID })
             //    .Select(s => s.OrderByDescending(x => x.SaleTonerDate).FirstOrDefault()).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ToList();
 
@@ -118,7 +122,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             //{
             //    lastTonerSale = lastTonerSale.Where(o => o.Toner.TonerModel.Contains(searchByToner)).OrderBy(s => s.Owner.OwnerName).ThenBy(s => s.Toner.TonerModel).ThenBy(s => s.SaleTonerDate);
             //}
-
+            #endregion
             var lastTonerSale = ControllerMethods.LastTonerSoldByOwnerOrTonerModel(searchByOwner, searchByToner);
             return View(lastTonerSale.ToList());
         }
