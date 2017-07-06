@@ -18,7 +18,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult Index()
         {
             //returns ordered list of sold toners first by date and then by owner
-            var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
+            var saleToners = ControllerMethods.OrderedListOfSoldTonersFirstByDateAndThenByOwner();
 
             return View(saleToners.ToList());
         }

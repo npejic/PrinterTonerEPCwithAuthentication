@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using PrinterTonerEPCwithAuthentication.Models;
+using System.Data.Entity;
 
 namespace PrinterTonerEPCwithAuthentication.Common
 {
@@ -133,5 +133,23 @@ namespace PrinterTonerEPCwithAuthentication.Common
             
         
         }
+
+        public static List<SaleToner>  OrderedListOfSoldTonersFirstByDateAndThenByOwner()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
+                return saleToners.ToList();
+            }
+        }
+
+        //public static void CreateSaleToners()
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        var saleToners = db.SaleToners.Include(s => s.Owner).Include(s => s.Toner).OrderByDescending(s => s.SaleTonerDate).ThenBy(c => c.Owner.OwnerName);
+        //        return saleToners.ToList();
+        //    }
+        //}
     }
 }
