@@ -100,7 +100,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 Contract contract = db.Contracts.Find(id);
 
-                //TODO: izmena svih kretanja štampača koji su na tom ugovoru
+                //izmena svih kretanja štampača koji su na tom ugovoru
                 TempData["currentConctract"] = contract.ContractName;
 
                 if (contract == null)
@@ -122,7 +122,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 {
                     db.Entry(contract).State = EntityState.Modified;
 
-                    //TODO: dodati deo gde Sale.Conctract -> Sale.AlternateContract
+                    //dodati deo gde Sale.Conctract -> Sale.AlternateContract
                     string currentConctract = (string)TempData["currentConctract"];
                     //lista svih kretanja tonera za dati ugovor
                     var currentConctractSales = db.Sales.Where(c => c.Contract.ContractName == currentConctract);
@@ -142,21 +142,21 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //TODO: nije implementiran USING()
         public ActionResult Delete(int? id)
         {
-            //ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                using (ApplicationDbContext db = new ApplicationDbContext())
-                {
+                //using (ApplicationDbContext db = new ApplicationDbContext())
+                //{
                     Contract contract = db.Contracts.Find(id);
                     if (contract == null)
                     {
                         return HttpNotFound();
                     }
                     return View(contract);
-                }
+                //}
         }
 
         [HttpPost, ActionName("Delete")]
