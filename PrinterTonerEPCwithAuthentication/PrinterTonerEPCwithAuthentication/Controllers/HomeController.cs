@@ -17,7 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
 
                 var sales = from s in db.Sales
-                            where s.Printer.Owner.OwnerName == "EPC DOO"
+                            where s.Printer.Owner.OwnerName == " EPC DOO"
                             select s;
                 //Ukupan broj EPC štampača na iznajmljivanju
                 var CountRentedPrinters = sales.Count();
