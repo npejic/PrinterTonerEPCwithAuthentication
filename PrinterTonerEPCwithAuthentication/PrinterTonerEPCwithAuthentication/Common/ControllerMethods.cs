@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using PrinterTonerEPCwithAuthentication.Models;
 using System.Data.Entity;
+using PrinterTonerEPCwithAuthentication.Common;
+using System.Web;
+using System.Web.Mvc;
 
 namespace PrinterTonerEPCwithAuthentication.Common
 {
@@ -104,22 +107,31 @@ namespace PrinterTonerEPCwithAuthentication.Common
                 }).OrderByDescending(c => c.TonerTotalCount).ToList();
 
                 //TODO: missing part of the code which will do TryParse DateTime input
-                if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
+                try
                 {
-                    DateTime dateFrom = Convert.ToDateTime(dateFromString);
-                    //if (DateTime.TryParse(dateFromString, out dateFrom))
-                    //{
-
-                    //}
-                    DateTime dateTo = Convert.ToDateTime(dateToString);
-                    var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+                    if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
                     {
-                        TotalTonerModel = r.Key,
-                        TonerTotalCount = r.Sum(c => c.TonerQuantity),
-                    }).OrderByDescending(c => c.TonerTotalCount).ToList();
+                        DateTime dateFrom = Convert.ToDateTime(dateFromString);
+                        //if (DateTime.TryParse(dateFromString, out dateFrom))
+                        //{
 
-                    soldToners = soldTonersInPeriod;
+                        //}
+                        DateTime dateTo = Convert.ToDateTime(dateToString);
+                        var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
+                        {
+                            TotalTonerModel = r.Key,
+                            TonerTotalCount = r.Sum(c => c.TonerQuantity),
+                        }).OrderByDescending(c => c.TonerTotalCount).ToList();
+
+                        soldToners = soldTonersInPeriod;
+                    }
                 }
+                catch (Exception ex)
+                { 
+                    LogJobs.LogError(ex);
+                    HttpContext.Current.Response.Redirect("/ErrorPage/ErrorMessage"); 
+                }
+
                 return soldToners.ToList();
             }
         }
