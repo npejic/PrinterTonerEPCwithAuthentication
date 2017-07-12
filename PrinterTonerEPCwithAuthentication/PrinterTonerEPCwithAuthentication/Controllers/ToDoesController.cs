@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PrinterTonerEPCwithAuthentication.Models;
 using PagedList;
+using PrinterTonerEPCwithAuthentication.Common;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
@@ -84,6 +85,11 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 db.ToDoes.Add(toDo);
                 db.SaveChanges();
+
+                string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                LogJobs.LogSuccess(toDo.ToDoID.ToString(), controllerName, actionName);
+
                 return RedirectToAction("Index");
             }
 
