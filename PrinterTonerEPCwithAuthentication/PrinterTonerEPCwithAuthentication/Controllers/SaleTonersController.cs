@@ -145,7 +145,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 db.SaleToners.Add(saleToner);
                 db.SaveChanges();
-LogJobs.LogSuccess(saleToner.OwnerID.ToString());
+                string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                LogJobs.LogSuccess(saleToner.SaleTonerID.ToString(), controllerName, actionName);
                 return RedirectToAction("Index");
             }
 
