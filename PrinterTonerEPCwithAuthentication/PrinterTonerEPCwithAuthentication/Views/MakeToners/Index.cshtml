@@ -41,7 +41,8 @@
             @Html.DisplayFor(modelItem => item.Toner.TonerModel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MakeTonerDate)
+            @*@Html.DisplayFor(modelItem => item.MakeTonerDate)*@
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.MakeTonerDate))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MakeTonerQuantity)
