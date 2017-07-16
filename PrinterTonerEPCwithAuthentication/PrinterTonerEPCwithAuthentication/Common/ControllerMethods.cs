@@ -78,8 +78,10 @@ namespace PrinterTonerEPCwithAuthentication.Common
 
         public static List<SaleToner> OwnersWithNoTonerOrderInSomePeriod(string searchParameterPeriodInMonths)
         {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
+            //TODO: prijavljuje grešku The ObjectContext instance has been disposed and can no longer be used for operations that require a connection
+            //using (ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            ApplicationDbContext db = new ApplicationDbContext();
                 var ownersWithNoAlarmOrder = db.SaleToners
                                                 .Where(c => c.Owner.OwnerIsActive == true)
                                                 .GroupBy(c => c.OwnerID)
@@ -93,7 +95,7 @@ namespace PrinterTonerEPCwithAuthentication.Common
                     ownersWithNoAlarmOrder = ownersWithNoAlarmOrder.Where(o => o.SaleTonerDate < LimitDate).OrderBy(s => s.SaleTonerDate);
                 }
                 return ownersWithNoAlarmOrder.ToList();
-            }
+            //}
         }
 
         public static List<TonerTotal> ListOfAllSoldTonersInPeriod(string dateFromString, string dateToString)
@@ -106,16 +108,11 @@ namespace PrinterTonerEPCwithAuthentication.Common
                     TonerTotalCount = r.Sum(c => c.TonerQuantity),
                 }).OrderByDescending(c => c.TonerTotalCount).ToList();
 
-                //TODO: missing part of the code which will do TryParse DateTime input
                 try
                 {
                     if (!String.IsNullOrEmpty(dateFromString) || !String.IsNullOrEmpty(dateToString))
                     {
                         DateTime dateFrom = Convert.ToDateTime(dateFromString);
-                        //if (DateTime.TryParse(dateFromString, out dateFrom))
-                        //{
-
-                        //}
                         DateTime dateTo = Convert.ToDateTime(dateToString);
                         var soldTonersInPeriod = db.SaleToners.Where(c => c.SaleTonerDate >= dateFrom && c.SaleTonerDate <= dateTo).GroupBy(r => r.Toner.TonerModel).Select(r => new TonerTotal()
                         {
@@ -154,6 +151,14 @@ namespace PrinterTonerEPCwithAuthentication.Common
                 return saleToners.ToList();
             }
         }
+
+
+        //TODO proba da se napravi reusable metoda za orderovanje bilo koje liste
+        //public static void aaa<T>(List<T> data)//, params string[] parameters)
+        //{
+        //    var resultt = 1;
+        //    return resultt;
+        //}
 
         //public static void CreateSaleToners()
         //{

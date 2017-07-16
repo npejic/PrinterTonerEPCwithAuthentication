@@ -13,7 +13,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 {
     public class SaleTonersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
@@ -38,7 +38,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
             return View(differences);
         }
-                
+
         //Report No.5 - Returns list of owners (companies) that didn't order toners in last X (periodInMonths) months
         public ActionResult TonerAlarm(string periodInMonths)
         {
@@ -67,6 +67,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             var ownersListWithNoOrder = ControllerMethods.OwnersWithNoTonerOrder();
             return View(ownersListWithNoOrder.ToList());
         }
+
 
         //Report No.6 - total sum of sold toners by sorted by model
         public ActionResult TotalTonerSale(string dateFromString, string dateToString)
@@ -98,7 +99,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             #endregion
             var soldToners = ControllerMethods.ListOfAllSoldTonersInPeriod(dateFromString, dateToString);
 
-            //Izračunava ukupan broj prodatih tonera
+            //Puts total sum of sold toners in period to ViewData
             ViewData["CountSoldToners"] = ControllerMethods.SumOfAllSoldTonersInPeriod(soldToners);
 
             return View(soldToners.ToList());
@@ -127,6 +128,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Create()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
             ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
 
@@ -139,11 +142,12 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SaleTonerID,SaleTonerDate,TonerPrice,OwnerID,TonerID,TonerQuantity,InvoiceNo")] SaleToner saleToner)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
                 db.SaleToners.Add(saleToner);
                 db.SaveChanges();
-
                 string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
                 string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
                 LogJobs.LogSuccess(saleToner.SaleTonerID.ToString(), controllerName, actionName);
@@ -157,6 +161,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Edit(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -175,6 +181,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SaleTonerID,SaleTonerDate,TonerPrice,OwnerID,TonerID,TonerQuantity,InvoiceNo")] SaleToner saleToner)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
                 db.Entry(saleToner).State = EntityState.Modified;
@@ -188,6 +196,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult Delete(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -204,6 +214,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             SaleToner saleToner = db.SaleToners.Find(id);
             db.SaleToners.Remove(saleToner);
             db.SaveChanges();
@@ -212,6 +224,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (disposing)
             {
                 db.Dispose();
