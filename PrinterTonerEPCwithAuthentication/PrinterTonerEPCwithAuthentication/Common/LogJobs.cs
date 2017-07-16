@@ -44,6 +44,7 @@ namespace PrinterTonerEPCwithAuthentication.Common
             message += currentAction;
             message += Environment.NewLine;
             message += currentUser;
+            message += Environment.NewLine;
             message += "-----------------------------------------------------------";
             string path = System.Web.HttpContext.Current.Server.MapPath("~/logs/Log.txt");  
             using (StreamWriter writer = new StreamWriter(path, true))                      
