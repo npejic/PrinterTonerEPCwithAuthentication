@@ -21,9 +21,9 @@ namespace PrinterTonerEPCwithAuthentication.Tests.Common
 
             int expected = 10;
             // act
-            int realNumber = ControllerMethods.SumOfAllSoldTonersInPeriod(testList);
+            int realNumberOfSoldToners = ControllerMethods.SumOfAllSoldTonersInPeriod(testList);
 
-            Assert.AreEqual(expected, realNumber, 0, "Account not debited correctly");
+            Assert.AreEqual(expected, realNumberOfSoldToners, 0, "Account not debited correctly");
 
         }
     }
