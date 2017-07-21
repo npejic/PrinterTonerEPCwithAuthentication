@@ -32,7 +32,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
             if (!String.IsNullOrEmpty(searchStringNick))
             {
-                toDoes = toDoes.Where(s => s.ApplicationUser.Nick.ToUpper().Contains(searchStringNick.ToUpper())).OrderBy(n => n.ApplicationUser.Nick);
+                toDoes = toDoes.Where(s => s.Description.ToUpper().Contains(searchStringNick.ToUpper())).OrderBy(n => n.Closed);
+                //toDoes = toDoes.Where(s => s.ApplicationUser.Nick.ToUpper().Contains(searchStringNick.ToUpper())).OrderBy(n => n.ApplicationUser.Nick);
             }
 
             switch (sortOrder)
@@ -47,10 +48,10 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                     toDoes = toDoes.OrderByDescending(s => s.Created);
                     break;
                 default:
-                    toDoes = toDoes.OrderBy(s => s.ApplicationUser.Nick);
+                    toDoes = toDoes.OrderBy(c => c.Closed != null).ThenByDescending(c => c.Closed).ThenBy(c => c.Created);
                     break;
             }
-            int pageSize = 33; 
+            int pageSize = 333; 
             int pageNumber = (page ?? 1);
 
             return View(toDoes.ToPagedList(pageNumber, pageSize));
