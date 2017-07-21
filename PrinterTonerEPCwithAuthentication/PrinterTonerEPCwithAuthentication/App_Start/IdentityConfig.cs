@@ -111,7 +111,7 @@ namespace PrinterTonerEPCwithAuthentication
     }
 
     /// <summary>
-    /// TODO: dodato
+    /// Added to factory configuration
     /// </summary>
     public class ApplicationRoleManager : RoleManager<IdentityRole>
     {

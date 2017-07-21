@@ -143,7 +143,6 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -152,18 +151,12 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: dodat Nick
+                //Added Nick to factory configuration
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Nick = model.Nick, CellPhone = model.CellPhone, FullName = model.FullName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }

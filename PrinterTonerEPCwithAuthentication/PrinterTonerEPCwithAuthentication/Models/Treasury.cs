@@ -9,8 +9,6 @@ namespace PrinterTonerEPCwithAuthentication.Models
     {
         public Treasury()
         {
-            //TODO:
-            //this.ApplicationUser.Nick = HttpContext.Current.User.Identity.Name;
         }
         public int TreasuryID { get; set; }
         public string ApplicationUserID { get; set; }
