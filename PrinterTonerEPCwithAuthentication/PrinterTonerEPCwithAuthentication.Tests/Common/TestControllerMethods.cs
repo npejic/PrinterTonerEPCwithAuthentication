@@ -19,9 +19,11 @@ namespace PrinterTonerEPCwithAuthentication.Tests.Common
             testList.Add(new TonerTotal { TotalTonerModel = "model2", TonerTotalCount = 3, TonerTotalMin = 1 });
             testList.Add(new TonerTotal { TotalTonerModel = "model1", TonerTotalCount = 6, TonerTotalMin = 1 });
 
+            int expected = 10;
             // act
-            ControllerMethods.SumOfAllSoldTonersInPeriod(testList);
+            int realNumberOfSoldToners = ControllerMethods.SumOfAllSoldTonersInPeriod(testList);
 
+            Assert.AreEqual(expected, realNumberOfSoldToners, 0, "Account not debited correctly");
 
         }
     }
