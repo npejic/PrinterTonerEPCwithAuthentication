@@ -96,9 +96,10 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                Contract contract = db.Contracts.Find(id);
+            //using (ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            ApplicationDbContext db = new ApplicationDbContext();   
+            Contract contract = db.Contracts.Find(id);
 
                 //izmena svih kretanja štampača koji su na tom ugovoru
                 TempData["currentConctract"] = contract.ContractName;
@@ -109,7 +110,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 }
                 ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
                 return View(contract);
-            }
+            //}
         }
 
         [HttpPost]
