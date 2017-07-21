@@ -4,6 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .col1 {
+        width: 110px;
+    }
+</style>
+
 <h2>Spisak ugovora</h2>
 
 <p>
@@ -14,7 +20,7 @@
         <th>
             Firma@*@Html.DisplayNameFor(model => model.Owner.OwnerName)*@
         </th>
-        <th>
+        <th class="col1">
             Ugovor@*@Html.DisplayNameFor(model => model.ContractName)*@
         </th>
         <th>
