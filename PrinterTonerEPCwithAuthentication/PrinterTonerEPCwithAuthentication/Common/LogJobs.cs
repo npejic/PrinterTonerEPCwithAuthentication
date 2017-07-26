@@ -37,13 +37,13 @@ namespace PrinterTonerEPCwithAuthentication.Common
             string message = string.Format("Time: {0}", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt"));
             var currentUser = System.Web.HttpContext.Current.User.Identity.Name;
             message += Environment.NewLine;
-            message += currentJob;
+            message += "Job ID: " + currentJob;
             message += Environment.NewLine;
-            message += currentController;
+            message += "Controller; " + currentController;
             message += Environment.NewLine;
-            message += currentAction;
+            message += "Action:" + currentAction;
             message += Environment.NewLine;
-            message += currentUser;
+            message += "User:" + currentUser;
             message += Environment.NewLine;
             message += "-----------------------------------------------------------";
             string path = System.Web.HttpContext.Current.Server.MapPath("~/logs/Log.txt");  
