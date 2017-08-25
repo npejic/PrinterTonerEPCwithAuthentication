@@ -172,8 +172,15 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", saleToner.OwnerID);
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", saleToner.TonerID);
+            //TODO:promenjeno
+            var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+            ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
+
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel");
+            
+            //ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", saleToner.OwnerID);
+            //ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", saleToner.TonerID);
             return View(saleToner);
         }
 
