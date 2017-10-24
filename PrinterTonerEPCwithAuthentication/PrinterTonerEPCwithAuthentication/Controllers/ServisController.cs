@@ -127,7 +127,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
 
         public ActionResult SelectOwner()
         {
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
+            var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+            ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
             
             return View();
         }

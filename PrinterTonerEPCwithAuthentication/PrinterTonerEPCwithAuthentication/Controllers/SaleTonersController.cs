@@ -26,7 +26,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         //Report No.8 - number of all toner models in warehouse 
         public ActionResult WarehouseToner()
         {
-            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners();
+            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().OrderBy(c => c.TotalTonerModel);
             return View(differences);
 
         }
@@ -35,7 +35,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult DailyDirective()
         {
            
-            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
+            //var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderByDescending(c => c.TonerTotalMin - c.TonerTotalCount).ThenBy(c => c.TotalTonerModel);
+            var differences = ControllerMethods.DifferencesBetweenSoldAndMadeToners().Where(c => c.TonerTotalCount <= c.TonerTotalMin && c.TonerTotalCount != c.TonerTotalMin).OrderBy(c => c.TotalTonerModel);
             return View(differences);
         }
 
@@ -172,8 +173,10 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", saleToner.OwnerID);
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", saleToner.TonerID);
+            var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName", saleToner.OwnerID);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel", saleToner.TonerID);
             return View(saleToner);
         }
 

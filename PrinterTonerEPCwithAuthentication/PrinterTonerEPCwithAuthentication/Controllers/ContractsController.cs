@@ -66,8 +66,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
 
-            var aaa = db.Owners.OrderBy(n=>n.OwnerName);
-            ViewBag.OwnerID = new SelectList(aaa, "OwnerID", "OwnerName");
+            var orderedOwners = db.Owners.OrderBy(n => n.OwnerName);
+            ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
             return View();
             
         }
@@ -108,7 +108,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.OwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", contract.OwnerID);
+                var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+                ViewBag.OwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName", contract.OwnerID);
                 return View(contract);
             //}
         }

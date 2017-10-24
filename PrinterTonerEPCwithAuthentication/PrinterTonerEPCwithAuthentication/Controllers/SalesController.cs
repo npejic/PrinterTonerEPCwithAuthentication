@@ -24,7 +24,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult SalesReportByOwner(string searchByOwner)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var sales = db.Sales.Where(s=>s.Printer.Owner.OwnerName=="EPC DOO").OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
+            var sales = db.Sales.Where(s => s.Printer.Owner.OwnerName == " EPC DOO").OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
 
             if (!string.IsNullOrEmpty(searchByOwner))
             {
@@ -52,7 +52,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         public ActionResult SalesReportByOwnerToPDF(string searchByOwner)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var sales = db.Sales.Where(s => s.Printer.Owner.OwnerName == "EPC DOO").OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
+            var sales = db.Sales.Where(s => s.Printer.Owner.OwnerName == " EPC DOO").OrderBy(s => s.Contract.Owner.OwnerName).ThenBy(s => s.Contract.ContractName);
 
             if (!string.IsNullOrEmpty(searchByOwner))
             {

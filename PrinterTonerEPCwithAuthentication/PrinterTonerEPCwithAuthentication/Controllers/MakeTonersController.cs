@@ -17,7 +17,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: MakeToners
         public ActionResult Index()
         {
-            var makeToners = db.MakeToners.Include(m => m.Owner).Include(m => m.Toner);
+            var makeToners = db.MakeToners.Include(m => m.Owner).Include(m => m.Toner).OrderByDescending(c => c.MakeTonerDate);
             return View(makeToners.ToList());
         }
 

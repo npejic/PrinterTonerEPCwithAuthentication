@@ -55,7 +55,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             var printerModelNoDuplicate = db.Printers.GroupBy(s => s.PrinterModel).Select(x => x.FirstOrDefault());
             ViewBag.PrinterID = new SelectList(printerModelNoDuplicate, "PrinterID", "PrinterModel");
 
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel");
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel");
             return View();
         }
 
@@ -88,8 +89,9 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return HttpNotFound();
             }
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
             ViewBag.PrinterID = new SelectList(db.Printers, "PrinterID", "PrinterModel", printerTonerCompatibility.PrinterID);
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", printerTonerCompatibility.TonerID);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel", printerTonerCompatibility.TonerID);
             return View(printerTonerCompatibility);
         }
 

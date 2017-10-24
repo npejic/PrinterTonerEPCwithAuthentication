@@ -39,9 +39,11 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         // GET: ComplaintToners/Create
         public ActionResult Create()
         {
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel");
-            ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
-            ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName");
+            var orderedOwners = db.Owners.OrderBy(c => c.OwnerName);
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel");
+            ViewBag.ComplaintFromOwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
+            ViewBag.ComplaintToOwnerID = new SelectList(orderedOwners, "OwnerID", "OwnerName");
             return View();
         }
 
@@ -75,7 +77,8 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TonerID = new SelectList(db.Toners, "TonerID", "TonerModel", complaintToner.TonerID);
+            var orderedToners = db.Toners.OrderBy(c => c.TonerModel);
+            ViewBag.TonerID = new SelectList(orderedToners, "TonerID", "TonerModel", complaintToner.TonerID);
             ViewBag.ComplaintFromOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintFromOwnerID);
             ViewBag.ComplaintToOwnerID = new SelectList(db.Owners, "OwnerID", "OwnerName", complaintToner.ComplaintToOwnerID);
             return View(complaintToner);
