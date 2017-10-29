@@ -10,7 +10,7 @@ using PrinterTonerEPCwithAuthentication.Models;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "user")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

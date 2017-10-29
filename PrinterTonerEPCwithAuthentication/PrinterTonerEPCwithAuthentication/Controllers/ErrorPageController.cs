@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class ErrorPageController : Controller
     {
         // GET: ErrorPage

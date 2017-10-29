@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class PrintersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

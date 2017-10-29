@@ -10,6 +10,7 @@ using System.Data.Entity; //needed because of Include
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class ContractsController : Controller
     {
         /// <summary>

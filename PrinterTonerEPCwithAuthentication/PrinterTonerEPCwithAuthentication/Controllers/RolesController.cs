@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class RolesController : Controller
     {
         // GET: /Roles/Create

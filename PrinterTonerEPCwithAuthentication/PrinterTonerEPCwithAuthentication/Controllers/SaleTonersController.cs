@@ -11,6 +11,7 @@ using PrinterTonerEPCwithAuthentication.Common;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class SaleTonersController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();

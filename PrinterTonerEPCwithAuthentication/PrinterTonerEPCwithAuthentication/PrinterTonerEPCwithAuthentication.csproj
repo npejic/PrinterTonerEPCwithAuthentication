@@ -269,6 +269,8 @@
     <Content Include="My Files\EPC Authentication.sql" />
     <Content Include="My Files\zadaci.txt" />
     <Content Include="App_Browsers\qt.browser" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\pejicn EPC.pubxml" />
     <None Include="Properties\PublishProfiles\pejicr EPC.pubxml" />
     <None Include="Properties\PublishProfiles\printertonertracker - FTP.pubxml" />

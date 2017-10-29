@@ -10,6 +10,7 @@ using PrinterTonerEPCwithAuthentication.Models;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
+    [Authorize(Roles = "user")]
     public class SalesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
