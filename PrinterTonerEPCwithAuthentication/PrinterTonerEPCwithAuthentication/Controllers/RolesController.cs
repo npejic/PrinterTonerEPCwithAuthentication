@@ -41,7 +41,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             ApplicationDbContext db = new ApplicationDbContext();
