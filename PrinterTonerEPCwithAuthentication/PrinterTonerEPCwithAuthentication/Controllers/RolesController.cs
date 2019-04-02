@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
-    [Authorize(Roles = "user")]
+    //[Authorize(Roles = "user")]
     public class RolesController : Controller
     {
         // GET: /Roles/Create
@@ -41,7 +41,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             }
         }
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             ApplicationDbContext db = new ApplicationDbContext();

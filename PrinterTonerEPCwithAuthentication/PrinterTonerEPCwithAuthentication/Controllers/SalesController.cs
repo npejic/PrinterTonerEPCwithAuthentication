@@ -7,6 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PrinterTonerEPCwithAuthentication.Models;
+using ClosedXML.Excel;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace PrinterTonerEPCwithAuthentication.Controllers
 {
@@ -21,6 +25,26 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
             var sales = db.Sales.Include(s => s.Contract).Include(s => s.Printer).OrderBy(s => s.Contract.ContractName).ThenBy(s => s.Contract.ContractDate);
             return View(sales.ToList());
         }
+
+        public ActionResult ExportToExcel()
+        {
+            var gv = new GridView();
+            var sales = db.Sales.Include(s => s.Contract).Include(s => s.Printer).OrderBy(s => s.Contract.ContractName).ThenBy(s => s.Contract.ContractDate);
+            gv.DataSource = sales.ToList();
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return View("Index");
+        }  
 
         public ActionResult SalesReportByOwner(string searchByOwner)
         {

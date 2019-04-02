@@ -41,6 +41,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // GET: Treasuries/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "FullName");
@@ -66,6 +67,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // GET: Treasuries/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace PrinterTonerEPCwithAuthentication.Controllers
         }
 
         // GET: Treasuries/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
